@@ -1,16 +1,15 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import pl.btwarog.AppConfig
+import pl.btwarog.AppDependencies
+
 buildscript {
-	ext.kotlin_version = "1.4.21"
 	repositories {
 		google()
 		jcenter()
 	}
 	dependencies {
-		classpath "com.android.tools.build:gradle:4.1.2"
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-		// NOTE: Do not place your application dependencies here; they belong
-		// in the individual module build.gradle files
+		classpath AppDependencies.tools_gradle_android
+		classpath AppDependencies.tools_kotlin
+		classpath AppDependencies.apollo_gradle_plugin
 	}
 }
 
@@ -25,21 +24,21 @@ subprojects {
 	afterEvaluate { project ->
 		if (project.hasProperty('android')) {
 			android {
-				compileSdkVersion 30
-				buildToolsVersion "30.0.3"
+				compileSdkVersion AppConfig.compileSdk
+				buildToolsVersion AppConfig.buildToolsVersion
 
 				defaultConfig {
-					minSdkVersion 21
-					targetSdkVersion 30
+					minSdkVersion AppConfig.minSdk
+					targetSdkVersion AppConfig.targetSdk
 
 					testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 				}
 				compileOptions {
-					sourceCompatibility JavaVersion.VERSION_1_8
-					targetCompatibility JavaVersion.VERSION_1_8
+					sourceCompatibility AppConfig.javaVersion
+					targetCompatibility AppConfig.javaVersion
 				}
 				kotlinOptions {
-					jvmTarget = '1.8'
+					jvmTarget = AppConfig.jvmTarget
 				}
 			}
 		}
