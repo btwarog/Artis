@@ -26,7 +26,6 @@ class AppDependencies {
 		/* Coil */
 		static final coil_version = "1.1.1"
 		/* Tests */
-		static final jacoco_version = "0.8.6"
 		static final junit_version = "4.13.2"
 		static final android_junit_version = "1.1.2"
 		static final android_espresso_version = "3.3.0"
@@ -66,6 +65,7 @@ class AppDependencies {
 	/* Coil */
 	static final coil = "io.coil-kt:coil:$Versions.coil_version"
 	/* Unit Tests */
+	static final jacoco_version = "0.8.6"
 	static final junit = "junit:junit:$Versions.junit_version"
 	/* Instrumentation Tests */
 	static final android_junit = "androidx.test.ext:junit:$Versions.android_junit_version"

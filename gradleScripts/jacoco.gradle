@@ -1,0 +1,46 @@
+import pl.btwarog.AppDependencies
+
+def coveredProject = subprojects
+
+configure(coveredProject) { prj ->
+	apply plugin: 'jacoco'
+
+	jacoco {
+		toolVersion = AppDependencies.jacoco_version
+	}
+
+	tasks.withType(Test) {
+		jacoco.includeNoLocationClasses = true
+	}
+	def testTask = 'testDebugUnitTest'
+	task jacocoReport(type: JacocoReport, dependsOn: testTask) {
+		group = 'Reporting'
+		description = 'Generate Jacoco coverage'
+
+		reports {
+			csv.enabled = true
+			xml.enabled = false
+			html.enabled = true
+		}
+
+		final fileFilter =
+				['**/R.class',
+				 '**/R$*.class',
+				 '**/BuildConfig.*',
+				 '**/Manifest*.*',
+				 'android/**/*.*',
+				 '**/*Component*.*',
+				 '**/*Module*.*',
+				 '**/*Test*.*',
+				 '**/*Binding.*']
+		final kotlinTree = fileTree(dir: "${prj.buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+		final javacTree = fileTree(dir: "${prj.buildDir}/intermediates/javac/debug", excludes: fileFilter)
+		final mainSrc = "${prj.projectDir}/src/main/java"
+
+		sourceDirectories.setFrom files([mainSrc])
+		classDirectories.setFrom files([kotlinTree, javacTree])
+		executionData.setFrom fileTree(dir: prj.buildDir, includes: [
+				"jacoco/${testTask}.exec", 'outputs/code-coverage/connected/*coverage.ec'
+		])
+	}
+}
