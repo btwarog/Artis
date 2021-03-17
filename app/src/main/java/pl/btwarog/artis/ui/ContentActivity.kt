@@ -1,13 +1,10 @@
 package pl.btwarog.artis.ui
 
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import pl.btwarog.artis.R.layout
+import androidx.navigation.findNavController
+import pl.btwarog.artis.R
 
-class ContentActivity : AppCompatActivity() {
+class ContentActivity : AppCompatActivity(R.layout.activity_content) {
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(layout.activity_content)
-	}
+	fun getActivityNavController() = findNavController(R.id.appContent)
 }

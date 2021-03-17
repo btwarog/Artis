@@ -7,6 +7,7 @@
 	tools:context=".ui.ContentActivity">
 
 	<com.google.android.material.button.MaterialButton
+		android:id="@+id/detailActionBtn"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="Go to detail"

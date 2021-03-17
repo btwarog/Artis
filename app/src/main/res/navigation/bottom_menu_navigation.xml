@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/bottomMenuNavigation"
+	app:startDestination="@+id/browse">
+
+	<fragment
+		android:id="@+id/browse"
+		android:name="pl.btwarog.artis.ui.browse.BrowseScreen"
+		android:label="Browse Screen"
+		tools:layout="@layout/screen_browse" />
+
+	<fragment
+		android:id="@+id/bookmarks"
+		android:name="pl.btwarog.artis.ui.bookmarks.BookmarksScreen"
+		android:label="Bookmarks Screen"
+		tools:layout="@layout/screen_bookmark" />
+
+</navigation>
