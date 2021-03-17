@@ -33,6 +33,9 @@ dependencies {
 	implementation AppDependencies.appcompat
 	implementation AppDependencies.material
 	implementation AppDependencies.constraint_layout
+	implementation AppDependencies.navigation_fragment_ktx
+	implementation AppDependencies.navigation_ui_ktx
+
 	testImplementation AppDependencies.junit
 	androidTestImplementation AppDependencies.android_junit
 	androidTestImplementation AppDependencies.android_espresso
