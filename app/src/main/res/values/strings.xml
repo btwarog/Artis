@@ -1,3 +1,5 @@
 <resources>
 	<string name="app_name">Artis</string>
+	<string name="bottom_tab_browse_title">Browse</string>
+	<string name="bottom_tab_bookmarks_title">Bookmarks</string>
 </resources>
