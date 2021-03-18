@@ -8,14 +8,14 @@ import pl.btwarog.artis.ui.bookmarks.BookmarksScreen
 import pl.btwarog.artis.ui.browse.BrowseScreen
 import pl.btwarog.artis.ui.detail.DetailScreen
 import pl.btwarog.artis.ui.splash.SplashScreen
-import pl.btwarog.core.injection.NetworkModule
+import pl.btwarog.brainz.injection.BrainzNetworkModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
 	modules = [
 		AppModule::class,
-		NetworkModule::class,
+		BrainzNetworkModule::class,
 		ViewModelsModule::class,
 	]
 )

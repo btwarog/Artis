@@ -7,6 +7,7 @@ import dagger.Provides
 import kotlinx.coroutines.Dispatchers
 import pl.btwarog.artis.BuildConfig
 import pl.btwarog.artis.domain.DispatcherExecutorImpl
+import pl.btwarog.brainz.injection.API_BASE_URL_KEY
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core.injection.LOG_ENABLED_KEY
 import javax.inject.Named
@@ -32,5 +33,12 @@ object AppModule {
 	@Provides
 	fun provideLogEnabledFlag(): Boolean {
 		return BuildConfig.HTTP_LOG_ENABLE
+	}
+
+	@Singleton
+	@Named(API_BASE_URL_KEY)
+	@Provides
+	fun provideApiBaseUrl(): String {
+		return BuildConfig.API_BASE_URL
 	}
 }

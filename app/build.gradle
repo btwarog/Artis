@@ -13,7 +13,7 @@ android {
 		versionCode 1
 		versionName "1.0"
 
-		buildConfigField 'String', "BASE_URL", '"https://graphbrainz.herokuapp.com"'
+		buildConfigField 'String', "API_BASE_URL", '"https://graphbrainz.herokuapp.com"'
 	}
 
 	testOptions {
