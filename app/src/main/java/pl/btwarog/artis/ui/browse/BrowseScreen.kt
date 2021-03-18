@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pl.btwarog.artis.R
 import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenBrowseBinding
@@ -12,6 +13,7 @@ import pl.btwarog.artis.ui.ContentActivity
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 
+@ExperimentalCoroutinesApi
 class BrowseScreen :
 	BaseViewModelFragment<ScreenBrowseBinding, BrowseScreenState, BrowseScreenAction, BrowseViewModel>(R.layout.screen_browse) {
 

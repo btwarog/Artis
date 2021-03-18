@@ -1,6 +1,6 @@
-query BrowseArtistsQuery {
+query BrowseArtistsQuery ($searchQuery: String!, $cursor: String) {
     search {
-        artists(query: "Nirvana", first: 15, after: null) {
+        artists(query: $searchQuery, first: 15, after: $cursor) {
             nodes {
                 ...ArtistBasicFragment
             }
