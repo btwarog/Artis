@@ -1,3 +1,4 @@
+include ':brainz'
 include ':core-ui'
 include ':core'
 include ':app'

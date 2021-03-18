@@ -1,0 +1,19 @@
+import pl.btwarog.AppDependencies
+
+plugins {
+	id 'java-library'
+	id 'kotlin'
+	id 'kotlin-kapt'
+	id 'com.apollographql.apollo'
+}
+
+dependencies {
+	implementation project(":core")
+
+	api AppDependencies.apollo_runtime
+	api AppDependencies.apollo_coroutines
+
+	kapt AppDependencies.dagger_compiler
+
+	testImplementation AppDependencies.junit
+}
