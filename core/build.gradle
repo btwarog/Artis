@@ -24,6 +24,7 @@ dependencies {
 	api AppDependencies.app_kotlin
 	api AppDependencies.coroutines
 	api AppDependencies.core_ktx
+	api AppDependencies.fragment_ktx
 	api AppDependencies.appcompat
 	api AppDependencies.lifecycle_runtime
 	api AppDependencies.lifecycle_viewmodel_ktx
