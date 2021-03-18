@@ -25,6 +25,8 @@ class AppDependencies {
 		static final dagger_version = "2.33"
 		/* Coil */
 		static final coil_version = "1.1.1"
+		/* Timberkt */
+		static final timberkt_version = "1.5.1"
 		/* Tests */
 		static final junit_version = "4.13.2"
 		static final android_junit_version = "1.1.2"
@@ -63,6 +65,8 @@ class AppDependencies {
 	static final dagger_compiler = "com.google.dagger:dagger-compiler:$Versions.dagger_version"
 	/* Coil */
 	static final coil = "io.coil-kt:coil:$Versions.coil_version"
+	/* Timberkt */
+	static final timberkt = "com.github.ajalt:timberkt:$Versions.timberkt_version"
 	/* Unit Tests */
 	static final jacoco_version = "0.8.6"
 	static final junit = "junit:junit:$Versions.junit_version"
