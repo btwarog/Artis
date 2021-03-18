@@ -59,7 +59,6 @@ class AppDependencies {
 	static final okhttp = "com.squareup.okhttp3:okhttp:$Versions.okhttp_version"
 	static final okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$Versions.okhttp_version"
 	/* Dagger */
-	static final dagger_version = "2.33"
 	static final dagger = "com.google.dagger:dagger:$Versions.dagger_version"
 	static final dagger_compiler = "com.google.dagger:dagger-compiler:$Versions.dagger_version"
 	/* Coil */

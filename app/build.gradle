@@ -3,6 +3,7 @@ import pl.btwarog.AppDependencies
 plugins {
 	id 'com.android.application'
 	id 'kotlin-android'
+	id 'kotlin-kapt'
 }
 
 android {
@@ -27,7 +28,6 @@ android {
 }
 
 dependencies {
-
 	implementation AppDependencies.app_kotlin
 	implementation AppDependencies.core_ktx
 	implementation AppDependencies.appcompat
@@ -35,6 +35,9 @@ dependencies {
 	implementation AppDependencies.constraint_layout
 	implementation AppDependencies.navigation_fragment_ktx
 	implementation AppDependencies.navigation_ui_ktx
+
+	implementation AppDependencies.dagger
+	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
 	androidTestImplementation AppDependencies.android_junit
