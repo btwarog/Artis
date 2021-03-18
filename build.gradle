@@ -2,9 +2,6 @@ import pl.btwarog.AppConfig
 import pl.btwarog.AppDependencies
 
 buildscript {
-	ext {
-		kotlin_version = '1.4.21'
-	}
 	repositories {
 		google()
 		jcenter()
@@ -13,7 +10,6 @@ buildscript {
 		classpath AppDependencies.tools_gradle_android
 		classpath AppDependencies.tools_kotlin
 		classpath AppDependencies.apollo_gradle_plugin
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
 }
 
