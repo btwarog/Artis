@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="pl.btwarog.artis">
 
+	<uses-permission android:name="android.permission.INTERNET" />
+
 	<application
 		android:name=".ArtisApp"
 		android:allowBackup="false"
@@ -9,7 +11,8 @@
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.Artis">
+		android:theme="@style/Theme.Artis"
+		android:networkSecurityConfig="@xml/network_security_config">
 		<activity
 			android:name=".ui.ContentActivity"
 			android:launchMode="singleTask"
