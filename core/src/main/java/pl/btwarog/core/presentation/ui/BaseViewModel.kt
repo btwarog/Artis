@@ -13,7 +13,7 @@ import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core.presentation.model.ScreenAction
 import pl.btwarog.core.presentation.model.ScreenState
 
-open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION: ScreenAction>(private val dispatcherExecutor: IDispatcherExecutor) :
+open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION : ScreenAction>(private val dispatcherExecutor: IDispatcherExecutor) :
 	ViewModel() {
 
 	private val _screenState = MutableStateFlow<STATE?>(null)
@@ -38,11 +38,13 @@ open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION: ScreenAction>(priva
 		}
 	}
 
-	protected fun work(loadingState: STATE, workBlock: suspend () -> Unit) {
+	protected fun work(loadingState: STATE? = null, workBlock: suspend () -> Unit) {
 		if (!screenIdle()) {
 			return
 		}
-		processScreenState(loadingState)
+		loadingState?.let { state ->
+			processScreenState(state)
+		}
 		currentWork = viewModelScope.launch(dispatcherExecutor.workDispatcher) {
 			workBlock.invoke()
 		}
