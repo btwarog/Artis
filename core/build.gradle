@@ -33,6 +33,9 @@ dependencies {
 	api AppDependencies.dagger
 	kapt AppDependencies.dagger_compiler
 
+	implementation AppDependencies.okhttp
+	implementation AppDependencies.okhttp_logging_interceptor
+
 	testImplementation AppDependencies.junit
 	androidTestImplementation AppDependencies.android_junit
 	androidTestImplementation AppDependencies.android_espresso
