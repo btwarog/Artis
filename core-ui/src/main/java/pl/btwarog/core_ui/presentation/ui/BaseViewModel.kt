@@ -1,4 +1,4 @@
-package pl.btwarog.core.presentation.ui
+package pl.btwarog.core_ui.presentation.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
-import pl.btwarog.core.presentation.model.ScreenAction
-import pl.btwarog.core.presentation.model.ScreenState
+import pl.btwarog.core_ui.presentation.model.ScreenAction
+import pl.btwarog.core_ui.presentation.model.ScreenState
 
 open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION : ScreenAction>(private val dispatcherExecutor: IDispatcherExecutor) :
 	ViewModel() {

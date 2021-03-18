@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import pl.btwarog.artis.R
 import pl.btwarog.artis.databinding.ScreenBottomMenuBinding
-import pl.btwarog.core.presentation.ui.BaseFragment
+import pl.btwarog.core_ui.presentation.ui.BaseFragment
 
 class BottomMenuScreen : BaseFragment<ScreenBottomMenuBinding>(R.layout.screen_bottom_menu) {
 

@@ -6,10 +6,10 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
-import pl.btwarog.core.presentation.model.ScreenAction
-import pl.btwarog.core.presentation.model.ScreenState
-import pl.btwarog.core.presentation.ui.BaseViewModel
-import pl.btwarog.core.presentation.ui.BaseViewModelFactory
+import pl.btwarog.core_ui.presentation.model.ScreenAction
+import pl.btwarog.core_ui.presentation.model.ScreenState
+import pl.btwarog.core_ui.presentation.ui.BaseViewModel
+import pl.btwarog.core_ui.presentation.ui.BaseViewModelFactory
 
 class DetailViewModel @AssistedInject constructor(
 	dispatcherExecutor: IDispatcherExecutor,

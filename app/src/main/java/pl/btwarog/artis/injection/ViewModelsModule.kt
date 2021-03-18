@@ -10,7 +10,7 @@ import pl.btwarog.artis.ui.browse.BrowseViewModel
 import pl.btwarog.artis.ui.detail.DetailViewModel
 import pl.btwarog.artis.ui.splash.SplashViewModel
 import pl.btwarog.core.injection.ViewModelKey
-import pl.btwarog.core.presentation.ui.BaseViewModelFactory
+import pl.btwarog.core_ui.presentation.ui.BaseViewModelFactory
 
 @Module
 abstract class ViewModelsModule {

@@ -1,4 +1,4 @@
-package pl.btwarog.core.presentation.ui
+package pl.btwarog.core_ui.presentation.ui
 
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory

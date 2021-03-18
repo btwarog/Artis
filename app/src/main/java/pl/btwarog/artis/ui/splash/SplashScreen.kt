@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import pl.btwarog.artis.R
 import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenSplashBinding
-import pl.btwarog.core.presentation.ui.BaseViewModelFragment
+import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 
 class SplashScreen :
 	BaseViewModelFragment<ScreenSplashBinding, SplashScreenState, SplashScreenAction, SplashViewModel>(R.layout.screen_splash) {

@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import pl.btwarog.artis.R
 import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenDetailBinding
-import pl.btwarog.core.presentation.ui.BaseViewModelFragment
+import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 
 class DetailScreen :
 	BaseViewModelFragment<ScreenDetailBinding, DetailScreenState, DetailScreenAction, DetailViewModel>(R.layout.screen_detail) {

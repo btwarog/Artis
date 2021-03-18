@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-	implementation project(":core")
+	implementation project(":core-ui")
 	implementation AppDependencies.material
 	implementation AppDependencies.constraint_layout
 	implementation AppDependencies.navigation_fragment_ktx

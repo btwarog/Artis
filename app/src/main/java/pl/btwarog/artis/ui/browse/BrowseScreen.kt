@@ -10,7 +10,7 @@ import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenBrowseBinding
 import pl.btwarog.artis.ui.ContentActivity
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
-import pl.btwarog.core.presentation.ui.BaseViewModelFragment
+import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 
 class BrowseScreen :
 	BaseViewModelFragment<ScreenBrowseBinding, BrowseScreenState, BrowseScreenAction, BrowseViewModel>(R.layout.screen_browse) {

@@ -1,4 +1,4 @@
-package pl.btwarog.core.presentation.ui
+package pl.btwarog.core_ui.presentation.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

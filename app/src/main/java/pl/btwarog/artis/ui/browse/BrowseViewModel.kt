@@ -2,9 +2,9 @@ package pl.btwarog.artis.ui.browse
 
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
-import pl.btwarog.core.presentation.model.ScreenAction
-import pl.btwarog.core.presentation.model.ScreenState
-import pl.btwarog.core.presentation.ui.BaseViewModel
+import pl.btwarog.core_ui.presentation.model.ScreenAction
+import pl.btwarog.core_ui.presentation.model.ScreenState
+import pl.btwarog.core_ui.presentation.ui.BaseViewModel
 import javax.inject.Inject
 
 class BrowseViewModel @Inject constructor(
