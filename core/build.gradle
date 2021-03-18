@@ -1,22 +1,15 @@
 import pl.btwarog.AppDependencies
 
 plugins {
-	id 'com.android.application'
+	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-kapt'
 }
 
 android {
-
 	defaultConfig {
-		applicationId "pl.btwarog.artis"
 		versionCode 1
 		versionName "1.0"
-	}
-
-	testOptions {
-		execution 'ANDROIDX_TEST_ORCHESTRATOR'
-		animationsDisabled = true
 	}
 
 	buildTypes {
@@ -28,12 +21,11 @@ android {
 }
 
 dependencies {
-	implementation project(":core")
-	implementation AppDependencies.material
-	implementation AppDependencies.constraint_layout
-	implementation AppDependencies.navigation_fragment_ktx
-	implementation AppDependencies.navigation_ui_ktx
+	api AppDependencies.app_kotlin
+	api AppDependencies.core_ktx
+	api AppDependencies.appcompat
 
+	api AppDependencies.dagger
 	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
