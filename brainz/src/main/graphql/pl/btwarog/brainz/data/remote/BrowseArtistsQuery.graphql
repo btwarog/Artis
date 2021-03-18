@@ -1,0 +1,14 @@
+query BrowseArtistsQuery {
+    search {
+        artists(query: "Nirvana", first: 15, after: null) {
+            nodes {
+                ...ArtistBasicFragment
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+            totalCount
+        }
+    }
+}

@@ -1,0 +1,8 @@
+fragment ArtistBasicFragment on Artist {
+  id
+  name
+  disambiguation
+  mediaWikiImages {
+    url
+  }
+}
