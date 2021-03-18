@@ -48,8 +48,8 @@ class AppDependencies {
 	static final recycler_view = "androidx.recyclerview:recyclerview:$Versions.recycler_view_version"
 	static final paging_runtime = "androidx.paging:paging-runtime-ktx:$Versions.paging_version"
 	static final lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$Versions.lifecycle_version"
-	static final lifecycle_viewmodel_ktx = "aandroidx.lifecycle:lifecycle-viewmodel-ktx:$Versions.lifecycle_version"
-	static final lifecycle_viewmodel_savedstate = "aandroidx.lifecycle:lifecycle-viewmodel-savedstate:$Versions.lifecycle_version"
+	static final lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$Versions.lifecycle_version"
+	static final lifecycle_viewmodel_savedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$Versions.lifecycle_version"
 	static final navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$Versions.navigation_version"
 	static final navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$Versions.navigation_version"
 	/* Apollo */

@@ -25,6 +25,9 @@ dependencies {
 	api AppDependencies.coroutines
 	api AppDependencies.core_ktx
 	api AppDependencies.appcompat
+	api AppDependencies.lifecycle_runtime
+	api AppDependencies.lifecycle_viewmodel_ktx
+	api AppDependencies.lifecycle_viewmodel_savedstate
 
 	api AppDependencies.dagger
 	kapt AppDependencies.dagger_compiler
