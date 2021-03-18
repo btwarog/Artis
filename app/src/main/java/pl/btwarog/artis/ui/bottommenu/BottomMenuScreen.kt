@@ -1,29 +1,25 @@
 package pl.btwarog.artis.ui.bottommenu
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import pl.btwarog.artis.R
+import pl.btwarog.artis.databinding.ScreenBottomMenuBinding
+import pl.btwarog.core.presentation.ui.BaseFragment
 
-class BottomMenuScreen: Fragment(R.layout.screen_bottom_menu) {
+class BottomMenuScreen : BaseFragment<ScreenBottomMenuBinding>(R.layout.screen_bottom_menu) {
 
-	lateinit var bottomMenu: BottomNavigationView
+	override fun getBinding(inflater: LayoutInflater, container: ViewGroup?) =
+		ScreenBottomMenuBinding.inflate(inflater, container, false)
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
-		initLayouts(view)
+	override fun initView(savedInstanceState: Bundle?) {
 		setBottomMenu()
-	}
-
-	private fun initLayouts(view: View) {
-		bottomMenu = view.findViewById(R.id.bottomNavigationMenu)
 	}
 
 	private fun setBottomMenu() {
 		val navHost = childFragmentManager.findFragmentById(R.id.bottomMenuNavHost) as NavHostFragment
-		NavigationUI.setupWithNavController(bottomMenu, navHost.navController)
+		NavigationUI.setupWithNavController(binding.bottomNavigationMenu, navHost.navController)
 	}
 }

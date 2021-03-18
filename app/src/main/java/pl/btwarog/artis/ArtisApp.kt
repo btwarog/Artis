@@ -1,15 +1,12 @@
 package pl.btwarog.artis
 
 import android.app.Application
-import pl.btwarog.core.domain.executors.IDispatcherExecutor
+import androidx.fragment.app.Fragment
 import pl.btwarog.artis.injection.AppComponent
 import pl.btwarog.artis.injection.DaggerAppComponent
-import javax.inject.Inject
+import timber.log.Timber
 
 class ArtisApp : Application() {
-
-	@Inject
-	lateinit var dispatcherExecutor: IDispatcherExecutor
 
 	val appComponent: AppComponent by lazy {
 		DaggerAppComponent
@@ -20,5 +17,8 @@ class ArtisApp : Application() {
 	override fun onCreate() {
 		super.onCreate()
 		appComponent.inject(this)
+		if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 	}
 }
+
+val Fragment.appComponent get() = (requireActivity().application as ArtisApp).appComponent

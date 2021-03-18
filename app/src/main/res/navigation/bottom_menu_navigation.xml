@@ -15,6 +15,6 @@
 		android:id="@+id/bookmarks"
 		android:name="pl.btwarog.artis.ui.bookmarks.BookmarksScreen"
 		android:label="Bookmarks Screen"
-		tools:layout="@layout/screen_bookmark" />
+		tools:layout="@layout/screen_bookmarks" />
 
 </navigation>

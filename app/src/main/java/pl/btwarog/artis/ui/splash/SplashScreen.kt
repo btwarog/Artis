@@ -1,24 +1,35 @@
 package pl.btwarog.artis.ui.splash
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import pl.btwarog.artis.R
+import pl.btwarog.artis.appComponent
+import pl.btwarog.artis.databinding.ScreenSplashBinding
+import pl.btwarog.core.presentation.ui.BaseViewModelFragment
 
-class SplashScreen: Fragment(R.layout.screen_splash) {
+class SplashScreen :
+	BaseViewModelFragment<ScreenSplashBinding, SplashScreenState, SplashScreenAction, SplashViewModel>(R.layout.screen_splash) {
 
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
-		lifecycleScope.launchWhenCreated {
-			delay(1500L)
-			withContext(Dispatchers.Main) {
-				findNavController().navigate(R.id.action_splash_to_bottomMenu)
-			}
+	override fun inject() {
+		appComponent.inject(this)
+	}
+
+	override val viewModel: SplashViewModel by viewModels()
+
+	override fun getBinding(inflater: LayoutInflater, container: ViewGroup?) =
+		ScreenSplashBinding.inflate(inflater, container, false)
+
+	override fun initView(savedInstanceState: Bundle?) {
+	}
+
+	override fun onScreenStateReceived(screenState: SplashScreenState?) {}
+
+	override fun onScreenActionReceived(screenAction: SplashScreenAction) {
+		if (screenAction is SplashScreenAction.NavigateToBrowse) {
+			findNavController().navigate(R.id.action_splash_to_bottomMenu)
 		}
 	}
 }
