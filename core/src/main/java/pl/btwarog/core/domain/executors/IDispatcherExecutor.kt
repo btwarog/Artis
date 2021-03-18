@@ -1,4 +1,4 @@
-package pl.btwarog.artis.domain
+package pl.btwarog.core.domain.executors
 
 import kotlinx.coroutines.CoroutineDispatcher
 

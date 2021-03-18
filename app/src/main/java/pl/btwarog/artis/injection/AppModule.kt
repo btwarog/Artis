@@ -5,8 +5,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
-import pl.btwarog.artis.DispatcherExecutorImpl
-import pl.btwarog.artis.domain.IDispatcherExecutor
+import pl.btwarog.artis.domain.DispatcherExecutorImpl
+import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import javax.inject.Singleton
 
 @Module

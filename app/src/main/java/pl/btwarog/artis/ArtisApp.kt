@@ -1,7 +1,7 @@
 package pl.btwarog.artis
 
 import android.app.Application
-import pl.btwarog.artis.domain.IDispatcherExecutor
+import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.artis.injection.AppComponent
 import pl.btwarog.artis.injection.DaggerAppComponent
 import javax.inject.Inject

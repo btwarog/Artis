@@ -22,6 +22,7 @@ android {
 
 dependencies {
 	api AppDependencies.app_kotlin
+	api AppDependencies.coroutines
 	api AppDependencies.core_ktx
 	api AppDependencies.appcompat
 

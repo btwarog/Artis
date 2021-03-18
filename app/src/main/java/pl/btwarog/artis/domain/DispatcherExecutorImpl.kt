@@ -1,7 +1,7 @@
-package pl.btwarog.artis
+package pl.btwarog.artis.domain
 
 import kotlinx.coroutines.CoroutineDispatcher
-import pl.btwarog.artis.domain.IDispatcherExecutor
+import pl.btwarog.core.domain.executors.IDispatcherExecutor
 
 class DispatcherExecutorImpl(
 	override val workDispatcher: CoroutineDispatcher,
