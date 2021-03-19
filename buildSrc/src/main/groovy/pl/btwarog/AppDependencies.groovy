@@ -20,16 +20,29 @@ class AppDependencies {
 		/* Apollo */
 		static final apollo_version = "2.5.4"
 		/* OkHttp */
+
 		static final okhttp_version = "4.9.0"
 		/* Dagger */
+
 		static final dagger_version = "2.33"
 		/* Coil */
+
 		static final coil_version = "1.1.1"
 		/* Timberkt */
+
 		static final timberkt_version = "1.5.1"
 		/* Tests */
+
 		static final junit_version = "4.13.2"
+
+		static final assertj_version = "3.19.0"
+
+		static final mockk_version = "1.11.0"
+
+		static final turbine_version = "0.4.1"
+
 		static final android_junit_version = "1.1.2"
+
 		static final android_espresso_version = "3.3.0"
 	}
 
@@ -61,16 +74,30 @@ class AppDependencies {
 	static final okhttp = "com.squareup.okhttp3:okhttp:$Versions.okhttp_version"
 	static final okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$Versions.okhttp_version"
 	/* Dagger */
+
 	static final dagger = "com.google.dagger:dagger:$Versions.dagger_version"
+
 	static final dagger_compiler = "com.google.dagger:dagger-compiler:$Versions.dagger_version"
 	/* Coil */
+
 	static final coil = "io.coil-kt:coil:$Versions.coil_version"
 	/* Timberkt */
+
 	static final timberkt = "com.github.ajalt:timberkt:$Versions.timberkt_version"
 	/* Unit Tests */
+
 	static final jacoco_version = "0.8.6"
+
 	static final junit = "junit:junit:$Versions.junit_version"
+
+	static final assertj = "org.assertj:assertj-core:$Versions.assertj_version"
+
+	static final mockk = "io.mockk:mockk:$Versions.mockk_version"
+
+	static final turbine = "app.cash.turbine:turbine:$Versions.turbine_version"
 	/* Instrumentation Tests */
+
 	static final android_junit = "androidx.test.ext:junit:$Versions.android_junit_version"
+
 	static final android_espresso = "androidx.test.espresso:espresso-core:$Versions.android_espresso_version"
 }

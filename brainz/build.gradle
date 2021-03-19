@@ -1,3 +1,4 @@
+import pl.btwarog.AppConfig
 import pl.btwarog.AppDependencies
 
 plugins {
@@ -5,6 +6,20 @@ plugins {
 	id 'kotlin'
 	id 'kotlin-kapt'
 	id 'com.apollographql.apollo'
+}
+
+sourceCompatibility = AppConfig.javaVersion
+targetCompatibility = AppConfig.javaVersion
+
+compileKotlin {
+	kotlinOptions {
+		jvmTarget = AppConfig.jvmTarget
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		jvmTarget = AppConfig.jvmTarget
+	}
 }
 
 dependencies {
@@ -16,4 +31,7 @@ dependencies {
 	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
+	testImplementation AppDependencies.mockk
+	testImplementation AppDependencies.assertj
+	testImplementation AppDependencies.turbine
 }

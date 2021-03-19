@@ -1,9 +1,24 @@
+import pl.btwarog.AppConfig
 import pl.btwarog.AppDependencies
 
 plugins {
 	id 'java-library'
 	id 'kotlin'
 	id 'kotlin-kapt'
+}
+
+sourceCompatibility = AppConfig.javaVersion
+targetCompatibility = AppConfig.javaVersion
+
+compileKotlin {
+	kotlinOptions {
+		jvmTarget = AppConfig.jvmTarget
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		jvmTarget = AppConfig.jvmTarget
+	}
 }
 
 dependencies {
