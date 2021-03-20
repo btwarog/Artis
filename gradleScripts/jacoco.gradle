@@ -14,7 +14,7 @@ configure(coveredProject) { prj ->
 	tasks.withType(Test) {
 		jacoco.includeNoLocationClasses = true
 	}
-	def testTask = prj.projectDir.name == 'core' || prj.projectDir.name == 'brainz' ? 'test' : 'testDebugUnitTest'
+	def testTask = prj.projectDir.name == 'core' ? 'test' : 'testDebugUnitTest'
 	task jacocoReport(type: JacocoReport, dependsOn: testTask) {
 		group = 'Reporting'
 		description = 'Generate Jacoco coverage'
@@ -42,7 +42,9 @@ configure(coveredProject) { prj ->
 				 '**/Dagger*Component*.class',
 				 '**/*Module_*Factory.class',
 				 '**/*_Factory_Impl.*',
-				 '**/*_Factory.*']
+				 '**/*_Factory.*',
+				 '**/BrowseArtistsQuery*.*',
+				 '**/fragment/*.*']
 		final kotlinTree = fileTree(dir: "${prj.buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
 		final javacTree = fileTree(dir: "${prj.buildDir}/intermediates/javac/debug", excludes: fileFilter)
 		final mainSrc = "${prj.projectDir}/src/main/java"

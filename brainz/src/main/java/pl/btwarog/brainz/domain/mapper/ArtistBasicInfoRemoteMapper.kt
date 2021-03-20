@@ -5,7 +5,7 @@ import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.core.domain.mappers.RemoteMapper
 import javax.inject.Inject
 
-internal class ArtistBasicInfoRemoteMapper @Inject constructor(private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper) :
+class ArtistBasicInfoRemoteMapper @Inject constructor(private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper) :
 	RemoteMapper<ArtistBasicFragment, ArtistBasicInfo> {
 
 	override fun mapFromRemote(remote: ArtistBasicFragment): ArtistBasicInfo {

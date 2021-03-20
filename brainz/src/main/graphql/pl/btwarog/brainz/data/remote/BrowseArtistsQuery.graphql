@@ -1,6 +1,6 @@
-query BrowseArtistsQuery ($searchQuery: String!, $cursor: String) {
+query BrowseArtistsQuery ($searchQuery: String!, $pageSize: Int, $cursor: String) {
     search {
-        artists(query: $searchQuery, first: 15, after: $cursor) {
+        artists(query: $searchQuery, first: $pageSize, after: $cursor) {
             nodes {
                 ...ArtistBasicFragment
             }

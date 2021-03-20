@@ -6,7 +6,7 @@ import pl.btwarog.brainz.domain.model.PaginatedList
 import pl.btwarog.core.domain.mappers.RemoteMapper
 import javax.inject.Inject
 
-internal class PaginatedArtistsListRemoteMapper @Inject constructor(private val basicInfoRemoteMapper: ArtistBasicInfoRemoteMapper) :
+class PaginatedArtistsListRemoteMapper @Inject constructor(private val basicInfoRemoteMapper: ArtistBasicInfoRemoteMapper) :
 	RemoteMapper<Artists, PaginatedList<ArtistBasicInfo>> {
 
 	override fun mapFromRemote(remote: Artists): PaginatedList<ArtistBasicInfo> {

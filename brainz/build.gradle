@@ -1,29 +1,31 @@
-import pl.btwarog.AppConfig
 import pl.btwarog.AppDependencies
 
 plugins {
-	id 'java-library'
-	id 'kotlin'
+	id 'com.android.library'
+	id 'kotlin-android'
 	id 'kotlin-kapt'
 	id 'com.apollographql.apollo'
 }
 
-sourceCompatibility = AppConfig.javaVersion
-targetCompatibility = AppConfig.javaVersion
+android {
+	defaultConfig {
+		versionCode 1
+		versionName "1.0"
+	}
 
-compileKotlin {
-	kotlinOptions {
-		jvmTarget = AppConfig.jvmTarget
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
 	}
 }
-compileTestKotlin {
-	kotlinOptions {
-		jvmTarget = AppConfig.jvmTarget
-	}
-}
+
 
 dependencies {
 	implementation project(":core")
+
+	api AppDependencies.paging_runtime
 
 	api AppDependencies.apollo_runtime
 	api AppDependencies.apollo_coroutines
@@ -31,6 +33,7 @@ dependencies {
 	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
+	testImplementation AppDependencies.coroutines_test
 	testImplementation AppDependencies.mockk
 	testImplementation AppDependencies.assertj
 	testImplementation AppDependencies.turbine
