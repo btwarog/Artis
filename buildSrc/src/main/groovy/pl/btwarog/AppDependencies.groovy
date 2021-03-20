@@ -94,6 +94,8 @@ class AppDependencies {
 
 	static final mockk = "io.mockk:mockk:$Versions.mockk_version"
 
+	static final coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$Versions.kotlin_coroutines_version"
+
 	static final turbine = "app.cash.turbine:turbine:$Versions.turbine_version"
 	/* Instrumentation Tests */
 

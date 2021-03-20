@@ -39,6 +39,29 @@ subprojects {
 				}
 				kotlinOptions {
 					jvmTarget = AppConfig.jvmTarget
+					freeCompilerArgs += [
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+					]
+				}
+			}
+		} else {
+			sourceCompatibility = AppConfig.javaVersion
+			targetCompatibility = AppConfig.javaVersion
+
+			compileKotlin {
+				kotlinOptions {
+					jvmTarget = AppConfig.jvmTarget
+					freeCompilerArgs += [
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+					]
+				}
+			}
+			compileTestKotlin {
+				kotlinOptions {
+					jvmTarget = AppConfig.jvmTarget
+					freeCompilerArgs += [
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+					]
 				}
 			}
 		}
