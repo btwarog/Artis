@@ -41,7 +41,8 @@ dependencies {
 	implementation AppDependencies.navigation_fragment_ktx
 	implementation AppDependencies.navigation_ui_ktx
 	implementation AppDependencies.recycler_view
-	implementation AppDependencies.coil
+	implementation AppDependencies.glide
+	kapt AppDependencies.glide_compiler
 	implementation AppDependencies.timberkt
 
 	kapt AppDependencies.dagger_compiler

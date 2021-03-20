@@ -18,6 +18,7 @@ class AppDependencies {
 		static final lifecycle_version = "2.3.0"
 		static final navigation_version = "2.3.4"
 		/* Apollo */
+
 		static final apollo_version = "2.5.4"
 		/* OkHttp */
 
@@ -27,7 +28,7 @@ class AppDependencies {
 		static final dagger_version = "2.33"
 		/* Coil */
 
-		static final coil_version = "1.1.1"
+		static final glide = "4.12.0"
 		/* Timberkt */
 
 		static final timberkt_version = "1.5.1"
@@ -71,7 +72,9 @@ class AppDependencies {
 	static final apollo_runtime = "com.apollographql.apollo:apollo-runtime:$Versions.apollo_version"
 	static final apollo_coroutines = "com.apollographql.apollo:apollo-coroutines-support:$Versions.apollo_version"
 	/* OkHttp */
+
 	static final okhttp = "com.squareup.okhttp3:okhttp:$Versions.okhttp_version"
+
 	static final okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$Versions.okhttp_version"
 	/* Dagger */
 
@@ -80,7 +83,9 @@ class AppDependencies {
 	static final dagger_compiler = "com.google.dagger:dagger-compiler:$Versions.dagger_version"
 	/* Coil */
 
-	static final coil = "io.coil-kt:coil:$Versions.coil_version"
+	static final glide = "com.github.bumptech.glide:glide:$Versions.glide"
+
+	static final glide_compiler = "com.github.bumptech.glide:compiler:$Versions.glide"
 	/* Timberkt */
 
 	static final timberkt = "com.github.ajalt:timberkt:$Versions.timberkt_version"

@@ -7,4 +7,7 @@ data class ArtistBasicInfo(
 	val imageUrl: String,
 	val discogImageUrl: String,
 	var bookmarked: Boolean = false
-)
+) {
+
+	fun getArtistImageUrl() = if (imageUrl.isEmpty()) discogImageUrl else imageUrl
+}

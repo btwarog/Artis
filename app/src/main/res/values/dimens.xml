@@ -3,4 +3,5 @@
 	<dimen name="size_8">8dp</dimen>
 	<dimen name="size_16">16dp</dimen>
 	<dimen name="big_progress_size">64dp</dimen>
+	<dimen name="text_size_12">12sp</dimen>
 </resources>
