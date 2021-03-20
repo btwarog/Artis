@@ -11,8 +11,9 @@ import org.junit.*
 import pl.btwarog.brainz.domain.error.ResultWrapper
 import pl.btwarog.brainz.domain.repository.IArtistsRepository
 import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
+import pl.btwarog.brainz.domain.util.ArtistDetailInfoDataFactory
 
-class GetArtistListUseCaseTest {
+class GetArtistDetailUseCaseTest {
 
 	private val testCoroutineDispatcher: TestCoroutineDispatcher
 		get() {
@@ -21,12 +22,12 @@ class GetArtistListUseCaseTest {
 
 	private val artistRepository: IArtistsRepository = mockk()
 
-	private val getArtistsListUseCase = GetArtistsListUseCase(artistRepository)
+	private val getArtistsListUseCase = GetArtistDetailUseCase(artistRepository)
 
-	private val expectedData = ResultWrapper.Success(ArtistBasicInfoDataFactory.getPaginateListDomain())
+	private val expectedData = ResultWrapper.Success(ArtistDetailInfoDataFactory.getArtistDetailInfoDomain())
 
 	init {
-		coEvery { artistRepository.getArtists(any(), any(), any()) } returns expectedData
+		coEvery { artistRepository.getArtistDetail(any()) } returns expectedData
 	}
 
 	@Before
@@ -36,15 +37,15 @@ class GetArtistListUseCaseTest {
 
 	@Test
 	fun `given parameters get called the repository gets called once`() = testCoroutineDispatcher.runBlockingTest {
-		getArtistsListUseCase.getArtists("Test", 15, "")
+		getArtistsListUseCase.getArtistDetail("Test")
 		coVerify(exactly = 1) {
-			artistRepository.getArtists(any(), any(), any())
+			artistRepository.getArtistDetail(any())
 		}
 	}
 
 	@Test
 	fun `given parameters get called the repository return expected data`() = testCoroutineDispatcher.runBlockingTest {
-		Assertions.assertThat(getArtistsListUseCase.getArtists("Test", 15, null)).usingRecursiveComparison()
+		Assertions.assertThat(getArtistsListUseCase.getArtistDetail("Test")).usingRecursiveComparison()
 			.isEqualTo(
 				expectedData
 			)

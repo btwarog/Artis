@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import pl.btwarog.brainz.domain.ArtistsRemote
 import pl.btwarog.brainz.domain.ArtistsRepository
+import pl.btwarog.brainz.domain.mapper.ArtistDetailInfoRemoteMapper
 import pl.btwarog.brainz.domain.mapper.PaginatedArtistsListRemoteMapper
 import pl.btwarog.brainz.domain.remote.IArtistsRemote
 import pl.btwarog.brainz.domain.repository.IArtistsRepository
@@ -25,8 +26,9 @@ object BrainzDataModule {
 	@Singleton
 	fun provideArtistRemote(
 		apolloClient: ApolloClient,
-		paginatedArtistsListRemoteMapper: PaginatedArtistsListRemoteMapper
+		paginatedArtistsListRemoteMapper: PaginatedArtistsListRemoteMapper,
+		artistDetailInfoRemoteMapper: ArtistDetailInfoRemoteMapper
 	): IArtistsRemote {
-		return ArtistsRemote(apolloClient, paginatedArtistsListRemoteMapper)
+		return ArtistsRemote(apolloClient, paginatedArtistsListRemoteMapper, artistDetailInfoRemoteMapper)
 	}
 }
