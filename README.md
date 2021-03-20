@@ -1,0 +1,1 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/blongho/worldcountrydata/badge)](https://www.codefactor.io/repository/github/btwarog/artis)
