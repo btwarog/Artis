@@ -3,19 +3,20 @@ package pl.btwarog.brainz.domain.mapper
 import org.assertj.core.api.Assertions.*
 import org.junit.*
 import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
+import pl.btwarog.brainz.domain.util.ArtistDetailInfoDataFactory
 import pl.btwarog.brainz.domain.util.CommonDataFactory
 
-class DiscogToImageRemoteMapperTest {
+class ArtistDetailInfoMediaWikiImageRemoteMapperTest {
 
-	private val discogToImageUrlRemoteMapper = ArtistBasicDiscogToImageUrlRemoteMapper()
+	private val mediaWikiImageRemoteMapper = ArtistDetailInfoMediaWikiImageRemoteMapper()
 
 	private val expectedDomain = CommonDataFactory.getImageDomain()
 
-	private val providedRemote = ArtistBasicInfoDataFactory.getDiscogBasicRemote()
+	private val providedRemote = ArtistDetailInfoDataFactory.getMediaWikiImageRemote()
 
 	@Test
 	fun `correctly mapped item`() {
-		assertThat(discogToImageUrlRemoteMapper.mapFromRemote(providedRemote))
+		assertThat(mediaWikiImageRemoteMapper.mapFromRemote(providedRemote))
 			.isEqualTo(
 				expectedDomain
 			)
@@ -24,7 +25,7 @@ class DiscogToImageRemoteMapperTest {
 	@Test
 	fun `incorrectly mapped item`() {
 		val changeDomain = ""
-		assertThat(discogToImageUrlRemoteMapper.mapFromRemote(providedRemote))
+		assertThat(mediaWikiImageRemoteMapper.mapFromRemote(providedRemote))
 			.isNotEqualTo(
 				changeDomain
 			)

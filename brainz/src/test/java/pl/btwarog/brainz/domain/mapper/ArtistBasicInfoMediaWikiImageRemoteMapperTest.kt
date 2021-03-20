@@ -2,15 +2,16 @@ package pl.btwarog.brainz.domain.mapper
 
 import org.assertj.core.api.Assertions.*
 import org.junit.*
-import pl.btwarog.brainz.domain.util.ArtistsDataFactory
+import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
+import pl.btwarog.brainz.domain.util.CommonDataFactory
 
-class MediaWikiImageRemoteMapperTest {
+class ArtistBasicInfoMediaWikiImageRemoteMapperTest {
 
-	private val mediaWikiImageRemoteMapper = MediaWikiImageRemoteMapper()
+	private val mediaWikiImageRemoteMapper = ArtistBasicInfoMediaWikiImageRemoteMapper()
 
-	private val expectedDomain = ArtistsDataFactory.getImageDomain()
+	private val expectedDomain = CommonDataFactory.getImageDomain()
 
-	private val providedRemote = ArtistsDataFactory.getMediaWikiImageRemote()
+	private val providedRemote = ArtistBasicInfoDataFactory.getMediaWikiImageRemote()
 
 	@Test
 	fun `correctly mapped item`() {

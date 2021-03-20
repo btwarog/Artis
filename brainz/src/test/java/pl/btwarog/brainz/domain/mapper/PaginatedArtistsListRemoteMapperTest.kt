@@ -3,23 +3,24 @@ package pl.btwarog.brainz.domain.mapper
 import io.mockk.*
 import org.assertj.core.api.Assertions.*
 import org.junit.*
-import pl.btwarog.brainz.domain.util.ArtistsDataFactory
+import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
+import pl.btwarog.brainz.domain.util.CommonDataFactory
 
 class PaginatedArtistsListRemoteMapperTest {
 
-	private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper = mockk()
+	private val artistBasicInfoMediaWikiImageRemoteMapper: ArtistBasicInfoMediaWikiImageRemoteMapper = mockk()
 
 	private val artistBasicInfoRemoteMapper: ArtistBasicInfoRemoteMapper = mockk()
 
 	private val paginatedArtistsListRemoteMapper = PaginatedArtistsListRemoteMapper(artistBasicInfoRemoteMapper)
 
-	private val expectedDomain = ArtistsDataFactory.getPaginateListDomain()
+	private val expectedDomain = ArtistBasicInfoDataFactory.getPaginateListDomain()
 
-	private val providedRemote = ArtistsDataFactory.getPaginatedListRemote()
+	private val providedRemote = ArtistBasicInfoDataFactory.getPaginatedListRemote()
 
 	init {
-		every { mediaWikiImageRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getImageDomain()
-		every { artistBasicInfoRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getArtistBasicInfoDomain()
+		every { artistBasicInfoMediaWikiImageRemoteMapper.mapFromRemote(any()) } returns CommonDataFactory.getImageDomain()
+		every { artistBasicInfoRemoteMapper.mapFromRemote(any()) } returns ArtistBasicInfoDataFactory.getArtistBasicInfoDomain()
 	}
 
 	@Test

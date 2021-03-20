@@ -1,0 +1,5 @@
+query ArtistDetailQuery($id: ID!) {
+    node(id: $id) {
+        ...ArtistDetailFragment
+    }
+}

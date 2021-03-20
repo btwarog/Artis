@@ -11,3 +11,25 @@ fragment ArtistBasicFragment on Artist {
     }
   }
 }
+
+fragment ArtistDetailFragment on Artist {
+  id
+  name
+  country
+  gender
+  type
+  disambiguation
+  rating {
+    value
+  }
+  mediaWikiImages {
+    url
+  }
+  discogs {
+    realName
+    profile
+    images {
+      url
+    }
+  }
+}

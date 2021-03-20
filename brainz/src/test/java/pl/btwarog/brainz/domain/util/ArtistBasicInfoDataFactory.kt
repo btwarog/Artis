@@ -8,8 +8,9 @@ import pl.btwarog.brainz.data.remote.fragment.ArtistBasicFragment
 import pl.btwarog.brainz.data.remote.fragment.ArtistBasicFragment.Image
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.brainz.domain.model.PaginatedList
+import pl.btwarog.brainz.domain.util.CommonDataFactory.getImageDomain
 
-object ArtistsDataFactory {
+object ArtistBasicInfoDataFactory {
 
 	fun getMediaWikiImageRemote() = ArtistBasicFragment.MediaWikiImage("MediaWikiImage", "urlToTheImage")
 
@@ -17,12 +18,10 @@ object ArtistsDataFactory {
 		"Discog", listOf(
 			Image(
 				"Image",
-				"urlToTheImage"
+				getImageDomain()
 			)
 		)
 	)
-
-	fun getImageDomain() = "urlToTheImage"
 
 	fun getArtistBasicInfoRemote() = ArtistBasicFragment(
 		"ArtistBasicFragment",

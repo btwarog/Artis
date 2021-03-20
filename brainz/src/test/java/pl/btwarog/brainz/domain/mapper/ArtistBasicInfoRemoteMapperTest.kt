@@ -3,24 +3,25 @@ package pl.btwarog.brainz.domain.mapper
 import io.mockk.*
 import org.assertj.core.api.Assertions.*
 import org.junit.*
-import pl.btwarog.brainz.domain.util.ArtistsDataFactory
+import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
+import pl.btwarog.brainz.domain.util.CommonDataFactory
 
 class ArtistBasicInfoRemoteMapperTest {
 
-	private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper = mockk()
+	private val artistBasicInfoMediaWikiImageRemoteMapper: ArtistBasicInfoMediaWikiImageRemoteMapper = mockk()
 
-	private val discogToImageUrlRemoteMapper: DiscogToImageUrlRemoteMapper = mockk()
+	private val artistBasicDiscogToImageUrlRemoteMapper: ArtistBasicDiscogToImageUrlRemoteMapper = mockk()
 
 	private val artistBasicInfoRemoteMapper =
-		ArtistBasicInfoRemoteMapper(mediaWikiImageRemoteMapper, discogToImageUrlRemoteMapper)
+		ArtistBasicInfoRemoteMapper(artistBasicInfoMediaWikiImageRemoteMapper, artistBasicDiscogToImageUrlRemoteMapper)
 
-	private val expectedDomain = ArtistsDataFactory.getArtistBasicInfoDomain()
+	private val expectedDomain = ArtistBasicInfoDataFactory.getArtistBasicInfoDomain()
 
-	private val providedRemote = ArtistsDataFactory.getArtistBasicInfoRemote()
+	private val providedRemote = ArtistBasicInfoDataFactory.getArtistBasicInfoRemote()
 
 	init {
-		every { mediaWikiImageRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getImageDomain()
-		every { discogToImageUrlRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getImageDomain()
+		every { artistBasicInfoMediaWikiImageRemoteMapper.mapFromRemote(any()) } returns CommonDataFactory.getImageDomain()
+		every { artistBasicDiscogToImageUrlRemoteMapper.mapFromRemote(any()) } returns CommonDataFactory.getImageDomain()
 	}
 
 	@Test

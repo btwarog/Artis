@@ -10,7 +10,7 @@ import org.assertj.core.api.Assertions
 import org.junit.*
 import pl.btwarog.brainz.domain.error.ResultWrapper
 import pl.btwarog.brainz.domain.repository.IArtistsRepository
-import pl.btwarog.brainz.domain.util.ArtistsDataFactory
+import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
 
 class GetArtistListUseCaseTest {
 
@@ -23,7 +23,7 @@ class GetArtistListUseCaseTest {
 
 	private val getArtistsListUseCase = GetArtistsListUseCase(artistRepository)
 
-	private val expectedData = ResultWrapper.Success(ArtistsDataFactory.getPaginateListDomain())
+	private val expectedData = ResultWrapper.Success(ArtistBasicInfoDataFactory.getPaginateListDomain())
 
 	init {
 		coEvery { artistRepository.getArtists(any(), any(), any()) } returns expectedData
