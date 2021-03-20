@@ -5,6 +5,7 @@ import pl.btwarog.brainz.data.remote.BrowseArtistsQuery.Node
 import pl.btwarog.brainz.data.remote.BrowseArtistsQuery.Node.Fragments
 import pl.btwarog.brainz.data.remote.BrowseArtistsQuery.PageInfo
 import pl.btwarog.brainz.data.remote.fragment.ArtistBasicFragment
+import pl.btwarog.brainz.data.remote.fragment.ArtistBasicFragment.Image
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.brainz.domain.model.PaginatedList
 
@@ -12,21 +13,32 @@ object ArtistsDataFactory {
 
 	fun getMediaWikiImageRemote() = ArtistBasicFragment.MediaWikiImage("MediaWikiImage", "urlToTheImage")
 
-	fun getMediaWikiImageDomain() = "urlToTheImage"
+	fun getDiscogBasicRemote() = ArtistBasicFragment.Discogs(
+		"Discog", listOf(
+			Image(
+				"Image",
+				"urlToTheImage"
+			)
+		)
+	)
+
+	fun getImageDomain() = "urlToTheImage"
 
 	fun getArtistBasicInfoRemote() = ArtistBasicFragment(
 		"ArtistBasicFragment",
 		"i1234567890d",
 		"Nirvana",
 		"Disambiguation",
-		listOf(getMediaWikiImageRemote())
+		listOf(getMediaWikiImageRemote()),
+		getDiscogBasicRemote()
 	)
 
 	fun getArtistBasicInfoDomain() = ArtistBasicInfo(
 		id = "i1234567890d",
 		name = "Nirvana",
 		disambiguation = "Disambiguation",
-		imageUrl = getMediaWikiImageDomain(),
+		imageUrl = getImageDomain(),
+		discogImageUrl = getImageDomain()
 	)
 
 	fun getPaginatedListRemote() = Artists(

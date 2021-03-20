@@ -5,7 +5,10 @@ import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.core.domain.mappers.RemoteMapper
 import javax.inject.Inject
 
-class ArtistBasicInfoRemoteMapper @Inject constructor(private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper) :
+class ArtistBasicInfoRemoteMapper @Inject constructor(
+	private val mediaWikiImageRemoteMapper: MediaWikiImageRemoteMapper,
+	private val discogToImageUrlRemoteMapper: DiscogToImageUrlRemoteMapper
+) :
 	RemoteMapper<ArtistBasicFragment, ArtistBasicInfo> {
 
 	override fun mapFromRemote(remote: ArtistBasicFragment): ArtistBasicInfo {
@@ -15,7 +18,10 @@ class ArtistBasicInfoRemoteMapper @Inject constructor(private val mediaWikiImage
 			disambiguation = remote.disambiguation() ?: "",
 			imageUrl = remote.mediaWikiImages()
 				.mapNotNull { item -> mediaWikiImageRemoteMapper.mapFromRemote(item) }
-				.firstOrNull() ?: ""
+				.firstOrNull() ?: "",
+			discogImageUrl = remote.discogs()?.let { item ->
+				discogToImageUrlRemoteMapper.mapFromRemote(item)
+			} ?: ""
 		)
 	}
 }

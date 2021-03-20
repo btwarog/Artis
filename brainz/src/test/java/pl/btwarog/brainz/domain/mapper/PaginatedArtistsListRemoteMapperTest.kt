@@ -18,7 +18,7 @@ class PaginatedArtistsListRemoteMapperTest {
 	private val providedRemote = ArtistsDataFactory.getPaginatedListRemote()
 
 	init {
-		every { mediaWikiImageRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getMediaWikiImageDomain()
+		every { mediaWikiImageRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getImageDomain()
 		every { artistBasicInfoRemoteMapper.mapFromRemote(any()) } returns ArtistsDataFactory.getArtistBasicInfoDomain()
 	}
 

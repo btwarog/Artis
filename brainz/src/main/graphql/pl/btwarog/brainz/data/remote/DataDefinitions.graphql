@@ -5,4 +5,9 @@ fragment ArtistBasicFragment on Artist {
   mediaWikiImages {
     url
   }
+  discogs {
+    images {
+      url
+    }
+  }
 }

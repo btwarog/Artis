@@ -4,17 +4,17 @@ import org.assertj.core.api.Assertions.*
 import org.junit.*
 import pl.btwarog.brainz.domain.util.ArtistsDataFactory
 
-class MediaWikiImageRemoteMapperTest {
+class DiscogToImageRemoteMapperTest {
 
-	private val mediaWikiImageRemoteMapper = MediaWikiImageRemoteMapper()
+	private val discogToImageUrlRemoteMapper = DiscogToImageUrlRemoteMapper()
 
 	private val expectedDomain = ArtistsDataFactory.getImageDomain()
 
-	private val providedRemote = ArtistsDataFactory.getMediaWikiImageRemote()
+	private val providedRemote = ArtistsDataFactory.getDiscogBasicRemote()
 
 	@Test
 	fun `correctly mapped item`() {
-		assertThat(mediaWikiImageRemoteMapper.mapFromRemote(providedRemote))
+		assertThat(discogToImageUrlRemoteMapper.mapFromRemote(providedRemote))
 			.isEqualTo(
 				expectedDomain
 			)
@@ -23,7 +23,7 @@ class MediaWikiImageRemoteMapperTest {
 	@Test
 	fun `incorrectly mapped item`() {
 		val changeDomain = ""
-		assertThat(mediaWikiImageRemoteMapper.mapFromRemote(providedRemote))
+		assertThat(discogToImageUrlRemoteMapper.mapFromRemote(providedRemote))
 			.isNotEqualTo(
 				changeDomain
 			)

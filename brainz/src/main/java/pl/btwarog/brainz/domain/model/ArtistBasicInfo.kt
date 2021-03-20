@@ -5,5 +5,6 @@ data class ArtistBasicInfo(
 	val name: String,
 	val disambiguation: String,
 	val imageUrl: String,
+	val discogImageUrl: String,
 	var bookmarked: Boolean = false
 )
