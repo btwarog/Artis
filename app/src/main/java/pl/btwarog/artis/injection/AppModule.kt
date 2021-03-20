@@ -2,6 +2,7 @@ package pl.btwarog.artis.injection
 
 import android.app.Application
 import android.content.Context
+import androidx.paging.PagingConfig
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
@@ -40,5 +41,15 @@ object AppModule {
 	@Provides
 	fun provideApiBaseUrl(): String {
 		return BuildConfig.API_BASE_URL
+	}
+
+	@Singleton
+	@Provides
+	fun providePagingConfig(): PagingConfig {
+		return PagingConfig(
+			pageSize = 15,
+			prefetchDistance = 5,
+			enablePlaceholders = false
+		)
 	}
 }

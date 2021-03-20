@@ -1,13 +1,17 @@
 package pl.btwarog.artis.ui.browse
 
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Input
-import com.apollographql.apollo.coroutines.toFlow
-import com.github.ajalt.timberkt.d
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import pl.btwarog.brainz.presentation.paging.factory.ArtistListDataFactory
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
-import pl.btwarog.brainz.data.remote.BrowseArtistsQuery
+import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
+import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core_ui.presentation.model.ScreenAction
 import pl.btwarog.core_ui.presentation.model.ScreenState
@@ -16,23 +20,20 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class BrowseViewModel @Inject constructor(
-	private val apolloClient: ApolloClient,
+	private val artistListDataFactory: ArtistListDataFactory,
 	dispatcherExecutor: IDispatcherExecutor,
 ) : BaseViewModel<BrowseScreenState, BrowseScreenAction>(dispatcherExecutor) {
 
-	init {
-		fetchTemporaryArtists()
-	}
+	var pagingJob: Job? = null
 
-	private fun fetchTemporaryArtists() = work {
-		apolloClient.query(BrowseArtistsQuery("Nirvana", Input.fromNullable("YXJyYXljb25uZWN0aW9uOjE0"))).toFlow()
-			.collect { response ->
-				if (response.hasErrors()) {
-					d { "Errors occurred" }
-				} else {
-					d { "Downloaded query" }
+	init {
+		pagingJob = viewModelScope.launch {
+			artistListDataFactory.create("Nirv").cachedIn(viewModelScope).collect { data ->
+				withContext(dispatcherExecutor.resultDispatcher) {
+					processScreenState(ArtistsListDataLoaded(data))
 				}
 			}
+		}
 	}
 
 	fun onArtistClicked(artistId: String) {
@@ -40,7 +41,9 @@ class BrowseViewModel @Inject constructor(
 	}
 }
 
-sealed class BrowseScreenState : ScreenState
+sealed class BrowseScreenState : ScreenState {
+	class ArtistsListDataLoaded(val pagingData: PagingData<ArtistBasicInfo>) : BrowseScreenState()
+}
 
 sealed class BrowseScreenAction : ScreenAction {
 	class NavigateToDetail(val artistId: String) : BrowseScreenAction()

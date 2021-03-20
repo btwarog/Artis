@@ -1,5 +1,7 @@
 package pl.btwarog.brainz.domain
 
+import pl.btwarog.brainz.domain.error.ResultWrapper
+import pl.btwarog.brainz.domain.error.safeApiCall
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.brainz.domain.model.PaginatedList
 import pl.btwarog.brainz.domain.remote.IArtistsRemote
@@ -11,7 +13,7 @@ class ArtistsRepository(private val iArtistsRemote: IArtistsRemote) : IArtistsRe
 		searchQuery: String,
 		pageSize: Int,
 		nextPageCursor: String?
-	): PaginatedList<ArtistBasicInfo> {
-		return iArtistsRemote.getArtists(searchQuery, pageSize, nextPageCursor)
+	): ResultWrapper<PaginatedList<ArtistBasicInfo>> {
+		return safeApiCall { iArtistsRemote.getArtists(searchQuery, pageSize, nextPageCursor) }
 	}
 }

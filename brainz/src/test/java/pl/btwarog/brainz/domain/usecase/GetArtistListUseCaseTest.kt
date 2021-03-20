@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.assertj.core.api.Assertions
 import org.junit.*
+import pl.btwarog.brainz.domain.error.ResultWrapper
 import pl.btwarog.brainz.domain.repository.IArtistsRepository
 import pl.btwarog.brainz.domain.util.ArtistsDataFactory
 
@@ -22,7 +23,7 @@ class GetArtistListUseCaseTest {
 
 	private val getArtistsListUseCase = GetArtistsListUseCase(artistRepository)
 
-	private val expectedData = ArtistsDataFactory.getPaginateListDomain()
+	private val expectedData = ResultWrapper.Success(ArtistsDataFactory.getPaginateListDomain())
 
 	init {
 		coEvery { artistRepository.getArtists(any(), any(), any()) } returns expectedData

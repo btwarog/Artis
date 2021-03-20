@@ -9,7 +9,7 @@ import pl.btwarog.artis.ui.bookmarks.BookmarksViewModel
 import pl.btwarog.artis.ui.browse.BrowseViewModel
 import pl.btwarog.artis.ui.detail.DetailViewModel
 import pl.btwarog.artis.ui.splash.SplashViewModel
-import pl.btwarog.core.injection.ViewModelKey
+import pl.btwarog.core_ui.injection.ViewModelKey
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFactory
 
 @Module

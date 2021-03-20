@@ -2,4 +2,7 @@
 	<string name="app_name">Artis</string>
 	<string name="bottom_tab_browse_title">Browse</string>
 	<string name="bottom_tab_bookmarks_title">Bookmarks</string>
+	<string name="common_try_again_title">Try again</string>
+	<string name="common_network_issue">Please check your network. Please try again.</string>
+	<string name="common_general_issue">We\'re having some issues, sorry. Please try again.</string>
 </resources>

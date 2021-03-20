@@ -40,6 +40,7 @@ dependencies {
 	implementation AppDependencies.constraint_layout
 	implementation AppDependencies.navigation_fragment_ktx
 	implementation AppDependencies.navigation_ui_ktx
+	implementation AppDependencies.recycler_view
 	implementation AppDependencies.timberkt
 
 	kapt AppDependencies.dagger_compiler
