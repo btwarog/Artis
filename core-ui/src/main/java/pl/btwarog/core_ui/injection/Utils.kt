@@ -1,4 +1,4 @@
-package pl.btwarog.core.injection
+package pl.btwarog.core_ui.injection
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
