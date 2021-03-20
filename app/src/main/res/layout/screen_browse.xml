@@ -6,6 +6,15 @@
 	android:layout_height="match_parent"
 	tools:context=".ui.ContentActivity">
 
+	<androidx.appcompat.widget.SearchView
+		android:id="@+id/browseSearchView"
+		android:layout_width="0dp"
+		app:defaultQueryHint="@string/browse_search_hint"
+		android:layout_height="wrap_content"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent" />
+
 	<ViewFlipper
 		android:id="@+id/browseViewFlipper"
 		android:layout_width="0dp"
@@ -13,7 +22,7 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
+		app:layout_constraintTop_toBottomOf="@+id/browseSearchView">
 
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/browse_list"

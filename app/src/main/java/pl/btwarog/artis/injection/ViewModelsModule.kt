@@ -8,7 +8,6 @@ import dagger.multibindings.Multibinds
 import pl.btwarog.artis.ui.bookmarks.BookmarksViewModel
 import pl.btwarog.artis.ui.browse.BrowseViewModel
 import pl.btwarog.artis.ui.detail.DetailViewModel
-import pl.btwarog.artis.ui.splash.SplashViewModel
 import pl.btwarog.core_ui.injection.ViewModelKey
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFactory
 
@@ -23,18 +22,13 @@ abstract class ViewModelsModule {
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(SplashViewModel::class)
-	abstract fun bindSplashViewModel(viewModel: SplashViewModel): ViewModel
-
-	@Binds
-	@IntoMap
 	@ViewModelKey(BookmarksViewModel::class)
 	abstract fun bindBookmarksViewModel(viewModel: BookmarksViewModel): ViewModel
 
 	@Binds
 	@IntoMap
 	@ViewModelKey(BrowseViewModel::class)
-	abstract fun bindBrowseViewModel(viewModel: BrowseViewModel): ViewModel
+	abstract fun bindBrowseViewModel(viewModel: BrowseViewModel.Factory): BaseViewModelFactory<out ViewModel>
 
 	@Binds
 	@IntoMap

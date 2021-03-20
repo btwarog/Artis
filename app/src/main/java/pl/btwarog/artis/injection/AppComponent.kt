@@ -33,7 +33,6 @@ interface AppComponent {
 	}
 
 	fun inject(artisApp: ArtisApp)
-	fun inject(splashScreen: SplashScreen)
 	fun inject(BrowseScreen: BrowseScreen)
 	fun inject(bookmarksScreen: BookmarksScreen)
 	fun inject(detailFragment: DetailScreen)

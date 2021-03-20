@@ -1,35 +1,40 @@
 package pl.btwarog.artis.ui.splash
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.core.animation.doOnEnd
 import androidx.navigation.fragment.findNavController
 import pl.btwarog.artis.R
-import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenSplashBinding
-import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
+import pl.btwarog.core_ui.presentation.ui.BaseFragment
 
 class SplashScreen :
-	BaseViewModelFragment<ScreenSplashBinding, SplashScreenState, SplashScreenAction, SplashViewModel>(R.layout.screen_splash) {
-
-	override fun inject() {
-		appComponent.inject(this)
-	}
-
-	override val viewModel: SplashViewModel by viewModels()
+	BaseFragment<ScreenSplashBinding>(R.layout.screen_splash) {
 
 	override fun getBinding(inflater: LayoutInflater, container: ViewGroup?) =
 		ScreenSplashBinding.inflate(inflater, container, false)
 
 	override fun initView(savedInstanceState: Bundle?) {
+		ObjectAnimator.ofPropertyValuesHolder(
+			binding.splashLogo,
+			PropertyValuesHolder.ofFloat("scaleX", SCALE_FACTOR),
+			PropertyValuesHolder.ofFloat("scaleY", SCALE_FACTOR)
+		).apply {
+			duration = 500L
+			repeatMode = ObjectAnimator.REVERSE
+			repeatCount = 5
+			doOnEnd {
+				this@SplashScreen.findNavController().navigate(R.id.action_splash_to_bottomMenu)
+			}
+			start()
+		}
 	}
 
-	override fun onScreenStateReceived(screenState: SplashScreenState?) {}
+	companion object {
 
-	override fun onScreenActionReceived(screenAction: SplashScreenAction) {
-		if (screenAction is SplashScreenAction.NavigateToBrowse) {
-			findNavController().navigate(R.id.action_splash_to_bottomMenu)
-		}
+		private const val SCALE_FACTOR = 0.7f
 	}
 }

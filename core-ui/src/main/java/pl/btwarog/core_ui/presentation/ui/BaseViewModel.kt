@@ -13,7 +13,7 @@ import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core_ui.presentation.model.ScreenAction
 import pl.btwarog.core_ui.presentation.model.ScreenState
 
-open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION : ScreenAction>(private val dispatcherExecutor: IDispatcherExecutor) :
+open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION : ScreenAction>(protected val dispatcherExecutor: IDispatcherExecutor) :
 	ViewModel() {
 
 	private val _screenState = MutableStateFlow<STATE?>(null)

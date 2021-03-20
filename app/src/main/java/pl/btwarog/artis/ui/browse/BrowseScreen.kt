@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pl.btwarog.artis.R
@@ -14,6 +15,7 @@ import pl.btwarog.artis.ui.ContentActivity
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsAdapter
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsLoadStateAdapter
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
+import pl.btwarog.artis.ui.utils.QueryTextListener
 import pl.btwarog.brainz.domain.error.NetworkException
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 
@@ -36,6 +38,9 @@ class BrowseScreen :
 		binding.browseErrorView.retryButton.setOnClickListener {
 			adapter.retry()
 		}
+		binding.browseSearchView.setOnQueryTextListener(QueryTextListener(lifecycleScope) { query ->
+			viewModel.searchArtist(query ?: "")
+		})
 		initAdapter()
 	}
 
