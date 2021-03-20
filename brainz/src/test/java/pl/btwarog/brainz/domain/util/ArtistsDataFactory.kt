@@ -23,10 +23,10 @@ object ArtistsDataFactory {
 	)
 
 	fun getArtistBasicInfoDomain() = ArtistBasicInfo(
-		"i1234567890d",
-		"Nirvana",
-		"Disambiguation",
-		getMediaWikiImageDomain(),
+		id = "i1234567890d",
+		name = "Nirvana",
+		disambiguation = "Disambiguation",
+		imageUrl = getMediaWikiImageDomain(),
 	)
 
 	fun getPaginatedListRemote() = Artists(
@@ -46,8 +46,8 @@ object ArtistsDataFactory {
 	)
 
 	fun getPaginateListDomain() = PaginatedList(
-		listOf(getArtistBasicInfoDomain()),
-		true,
-		"adjh21hasd78kn1231"
+		results = listOf(getArtistBasicInfoDomain()),
+		hasNextPage = true,
+		nextPageCursor = "adjh21hasd78kn1231"
 	)
 }
