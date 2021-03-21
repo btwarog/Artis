@@ -57,28 +57,32 @@ class BrowseScreen :
 				viewModel.onArtistBookmarkClicked(position, id, bookmarked)
 			}
 		)
-		binding.browseList.itemAnimator = null
 		binding.browseList.adapter = adapterPaging.withLoadStateFooter(
 			ArtistItemsLoadStateAdapter { adapterPaging.retry() }
 		)
 		adapterPaging.addLoadStateListener { loadState ->
 			when (val state = loadState.source.refresh) {
 				is LoadState.NotLoading -> {
-					binding.browseViewFlipper.displayedChild = 0
+					binding.browseViewFlipper.displayedChild = CONTENT
 					binding.browseProgressView.progressView.isVisible = false
 				}
 				is LoadState.Loading -> {
-					binding.browseViewFlipper.displayedChild = 0
+					binding.browseViewFlipper.displayedChild = CONTENT
 					binding.browseProgressView.progressView.isVisible = true
 				}
 				is LoadState.Error -> {
 					binding.browseProgressView.progressView.isVisible = false
 					binding.browseErrorView.errorMessage.text =
 						getString(if (state.error is NetworkException) R.string.common_network_issue else R.string.common_general_issue)
-					binding.browseViewFlipper.displayedChild = 2
+					binding.browseViewFlipper.displayedChild = ERROR
 				}
 			}
 		}
+	}
+
+	override fun onResume() {
+		super.onResume()
+		viewModel.checkData()
 	}
 
 	override fun onScreenStateReceived(screenState: BrowseScreenState?) {
@@ -108,6 +112,9 @@ class BrowseScreen :
 				binding.browseProgressView.progressView.isVisible = false
 				adapterPaging.onItemChanged(screenAction.position, screenAction.bookmarked)
 			}
+			BrowseScreenAction.RefreshPagingData -> {
+				adapterPaging.refresh()
+			}
 			BrowseScreenAction.BookmarkActionFailed -> {
 				PopupHandler.showMessage(requireContext())
 				binding.browseProgressView.progressView.isVisible = false
@@ -116,5 +123,11 @@ class BrowseScreen :
 				binding.browseProgressView.progressView.isVisible = true
 			}
 		}
+	}
+
+	companion object {
+
+		private const val CONTENT = 0
+		private const val ERROR = 1
 	}
 }

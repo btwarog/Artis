@@ -43,7 +43,6 @@ class BookmarksScreen :
 				viewModel.onArtistBookmarkClicked(id)
 			}
 		)
-		binding.bookmarksList.itemAnimator = null
 		binding.bookmarksList.adapter = adapter
 	}
 

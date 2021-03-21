@@ -16,6 +16,7 @@ import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFailed
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFinished
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionLoading
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
+import pl.btwarog.artis.ui.browse.BrowseScreenAction.RefreshPagingData
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
 import pl.btwarog.brainz.domain.model.IArtistListInfo
@@ -37,7 +38,8 @@ class BrowseViewModel @AssistedInject constructor(
 	@Assisted private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<BrowseScreenState, BrowseScreenAction>(dispatcherExecutor) {
 
-	var pagingJob: Job? = null
+	private var pagingJob: Job? = null
+	private var forceRefresh = false
 
 	init {
 		val searchedQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY)
@@ -68,6 +70,7 @@ class BrowseViewModel @AssistedInject constructor(
 	}
 
 	fun onArtistClicked(artistId: String) {
+		forceRefresh = true
 		processScreenAction(NavigateToDetail(artistId))
 	}
 
@@ -99,6 +102,13 @@ class BrowseViewModel @AssistedInject constructor(
 		}
 	}
 
+	fun checkData() {
+		if (forceRefresh) {
+			forceRefresh = false
+			processScreenAction(RefreshPagingData)
+		}
+	}
+
 	@AssistedFactory
 	interface Factory : BaseViewModelFactory<BrowseViewModel> {
 
@@ -114,6 +124,7 @@ sealed class BrowseScreenState : ScreenState {
 }
 
 sealed class BrowseScreenAction : ScreenAction {
+	object RefreshPagingData : BrowseScreenAction()
 	class NavigateToDetail(val artistId: String) : BrowseScreenAction()
 	object BookmarkActionLoading : BrowseScreenAction()
 	object BookmarkActionFailed : BrowseScreenAction()
