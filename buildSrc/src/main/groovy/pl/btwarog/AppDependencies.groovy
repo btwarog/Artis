@@ -1,22 +1,37 @@
 package pl.btwarog
 
 class AppDependencies {
+
 	private static class Versions {
 		/* Gradle */
+
 		static final gradle_android_version = "4.1.2"
 		/* Kotlin */
+
 		static final kotlin_version = "1.4.21"
+
 		static final kotlin_coroutines_version = "1.4.2"
 		/* Google */
+
 		static final appcompat_version = "1.2.0"
+
 		static final material_version = "1.3.0"
+
 		static final core_ktx_version = "1.3.2"
+
 		static final fragment_ktx_version = "1.3.1"
+
 		static final constraint_layout_version = "2.0.4"
+
 		static final recycler_view_version = "1.1.0"
+
 		static final paging_version = "3.0.0-beta02"
+
 		static final lifecycle_version = "2.3.0"
+
 		static final navigation_version = "2.3.4"
+
+		static final room_version = "2.3.0-beta03"
 		/* Apollo */
 
 		static final apollo_version = "2.5.4"
@@ -49,27 +64,50 @@ class AppDependencies {
 
 
 	/* Gradle Plugins */
+
 	static final tools_gradle_android = "com.android.tools.build:gradle:$Versions.gradle_android_version"
+
 	static final tools_kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin_version"
+
 	static final apollo_gradle_plugin = "com.apollographql.apollo:apollo-gradle-plugin:$Versions.apollo_version"
 	/* Kotlin */
+
 	static final app_kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$Versions.kotlin_version"
+
 	static final coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$Versions.kotlin_coroutines_version"
 	/* Google */
+
 	static final appcompat = "androidx.appcompat:appcompat:$Versions.appcompat_version"
+
 	static final material = "com.google.android.material:material:$Versions.material_version"
+
 	static final core_ktx = "androidx.core:core-ktx:$Versions.core_ktx_version"
+
 	static final fragment_ktx = "androidx.fragment:fragment-ktx:$Versions.fragment_ktx_version"
+
 	static final constraint_layout = "androidx.constraintlayout:constraintlayout:$Versions.constraint_layout_version"
+
 	static final recycler_view = "androidx.recyclerview:recyclerview:$Versions.recycler_view_version"
+
 	static final paging_runtime = "androidx.paging:paging-runtime-ktx:$Versions.paging_version"
+
 	static final lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$Versions.lifecycle_version"
+
 	static final lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$Versions.lifecycle_version"
+
 	static final lifecycle_viewmodel_savedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$Versions.lifecycle_version"
+
 	static final navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$Versions.navigation_version"
+
 	static final navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$Versions.navigation_version"
+
+	static final room_ktx = "androidx.room:room-ktx:$Versions.room_version"
+
+	static final room_compiler = "androidx.room:room-compiler:$Versions.room_version"
 	/* Apollo */
+
 	static final apollo_runtime = "com.apollographql.apollo:apollo-runtime:$Versions.apollo_version"
+
 	static final apollo_coroutines = "com.apollographql.apollo:apollo-coroutines-support:$Versions.apollo_version"
 	/* OkHttp */
 
