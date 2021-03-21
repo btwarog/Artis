@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	tools:layout_height="wrap_content"
+	tools:layout_width="match_parent"
+	tools:parentTag="LinearLayout">
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/infoTitle"
+		style="@style/TextAppearance.AppCompat.Title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/size_16"
+		android:layout_marginTop="@dimen/size_16"
+		android:layout_marginEnd="@dimen/size_16"
+		android:text="@string/artist_detail_name_title" />
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/infoValue"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/size_32"
+		android:layout_marginTop="@dimen/size_16"
+		android:layout_marginEnd="@dimen/size_16"
+		tools:text="Test" />
+</merge>

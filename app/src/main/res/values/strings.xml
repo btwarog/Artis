@@ -11,6 +11,7 @@
 	<string name="artist_detail_gender_title">Gender:</string>
 	<string name="artist_detail_type_title">Type:</string>
 	<string name="artist_detail_country_title">Country:</string>
+	<string name="artist_detail_rating_title">Country:</string>
 	<string name="artist_rating_title">Rating:</string>
 	<string name="common_try_again_title">Try again</string>
 	<string name="common_ok">OK</string>

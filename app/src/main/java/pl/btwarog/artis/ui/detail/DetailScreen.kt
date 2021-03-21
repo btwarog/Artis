@@ -63,14 +63,14 @@ class DetailScreen :
 	private fun setViewWithData(artistDetailInfo: ArtistDetailInfo) {
 		with(binding.detailContent) {
 			detailImage.loadUrlImage(artistDetailInfo.getArtistImageUrl())
-			detailNameValue.text = artistDetailInfo.name
-			detailDisambiguationValue.text = artistDetailInfo.disambiguation
-			detailRealNameValue.text = artistDetailInfo.realName
-			detailProfileValue.text = artistDetailInfo.profile
-			detailGenderValue.text = artistDetailInfo.gender
-			detailTypeValue.text = artistDetailInfo.type
-			detailCountryValue.text = artistDetailInfo.country
-			detailRatingValue.text = artistDetailInfo.rating.toString()
+			detailNameInfo.setValue(artistDetailInfo.name)
+			detailDisambiguationInfo.setValue(artistDetailInfo.disambiguation)
+			detailRealNameInfo.setValue(artistDetailInfo.realName)
+			detailProfileInfo.setValue(artistDetailInfo.profile)
+			detailGenderInfo.setValue(artistDetailInfo.gender)
+			detailTypeInfo.setValue(artistDetailInfo.type)
+			detailCountryInfo.setValue(artistDetailInfo.country)
+			detailRatingInfo.setValue(artistDetailInfo.rating.toString())
 			detailArtistAction.setImageDrawable(
 				ContextCompat.getDrawable(
 					requireContext(),

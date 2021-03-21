@@ -32,208 +32,77 @@
 			app:srcCompat="@drawable/ic_not_bookmarked"
 			app:tint="?attr/colorSecondary" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailNameTitle"
-			style="@style/TextAppearance.AppCompat.Title"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailNameInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_name_title"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+			app:layout_constraintTop_toBottomOf="@+id/detailImage"
+			app:title="@string/artist_detail_name_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailNameValue"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailDisambiguationInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailNameTitle"
-			tools:text="@string/artist_detail_name_title" />
+			app:layout_constraintTop_toBottomOf="@+id/detailNameInfo"
+			app:title="@string/artist_detail_disambiguation_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailDisambiguationTitle"
-			style="@style/TextAppearance.AppCompat.Title"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailRealNameInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_disambiguation_title"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailNameValue" />
+			app:layout_constraintTop_toBottomOf="@+id/detailDisambiguationInfo"
+			app:title="@string/artist_detail_real_name_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailDisambiguationValue"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailGenderInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailDisambiguationTitle"
-			tools:text="@string/artist_detail_disambiguation_title" />
+			app:layout_constraintTop_toBottomOf="@+id/detailRealNameInfo"
+			app:title="@string/artist_detail_gender_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailRealNameTitle"
-			style="@style/TextAppearance.AppCompat.Title"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailTypeInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_real_name_title"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailDisambiguationValue" />
+			app:layout_constraintTop_toBottomOf="@+id/detailGenderInfo"
+			app:title="@string/artist_detail_type_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailRealNameValue"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailCountryInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailRealNameTitle"
-			tools:text="@string/artist_detail_real_name_title" />
+			app:layout_constraintTop_toBottomOf="@+id/detailTypeInfo"
+			app:title="@string/artist_detail_country_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailGenderTitle"
-			style="@style/TextAppearance.AppCompat.Title"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailRatingInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_gender_title"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailRealNameValue" />
+			app:layout_constraintTop_toBottomOf="@+id/detailCountryInfo"
+			app:title="@string/artist_detail_rating_title" />
 
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailGenderValue"
+		<pl.btwarog.artis.ui.widget.InfoView
+			android:id="@+id/detailProfileInfo"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailGenderTitle"
-			tools:text="@string/artist_detail_gender_title" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailTypeTitle"
-			style="@style/TextAppearance.AppCompat.Title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_type_title"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailGenderValue" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailTypeValue"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailTypeTitle"
-			tools:text="@string/artist_detail_type_title" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailCountryTitle"
-			style="@style/TextAppearance.AppCompat.Title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_country_title"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailTypeValue" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailCountryValue"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailCountryTitle"
-			tools:text="@string/artist_detail_country_title" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailRatingTitle"
-			style="@style/TextAppearance.AppCompat.Title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_rating_title"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailCountryValue" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailRatingValue"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailRatingTitle"
-			tools:text="@string/artist_rating_title" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailProfileTitle"
-			style="@style/TextAppearance.AppCompat.Title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_16"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:text="@string/artist_detail_profile_title"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailRatingValue" />
-
-		<com.google.android.material.textview.MaterialTextView
-			android:id="@+id/detailProfileValue"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="@dimen/size_32"
-			android:layout_marginTop="@dimen/size_16"
-			android:layout_marginEnd="@dimen/size_16"
-			android:layout_marginBottom="@dimen/size_16"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/detailProfileTitle"
-			tools:text="@string/artist_detail_profile_title" />
-
+			app:layout_constraintTop_toBottomOf="@+id/detailRatingInfo"
+			app:title="@string/artist_detail_profile_title" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
