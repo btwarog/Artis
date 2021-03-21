@@ -11,10 +11,12 @@
 	<string name="artist_detail_gender_title">Gender:</string>
 	<string name="artist_detail_type_title">Type:</string>
 	<string name="artist_detail_country_title">Country:</string>
-	<string name="artist_rating_title">Country:</string>
+	<string name="artist_rating_title">Rating:</string>
 	<string name="common_try_again_title">Try again</string>
-	<string name="common_network_issue">Please check your network. Please try again.</string>
-	<string name="common_general_issue">We\'re having some issues, sorry. Please try again.</string>
+	<string name="common_ok">OK</string>
+	<string name="common_error_title">Error occurred</string>
+	<string name="common_network_issue">Please check your network and try again.</string>
+	<string name="common_general_issue">We\'re having some issues, sorry. Please try again later.</string>
 	<string name="content_description_artist_image">Artist image</string>
 	<string name="content_description_bookmark_button">Bookmark button</string>
 	<string name="content_description_unbookmark_button">Unbookmark button</string>

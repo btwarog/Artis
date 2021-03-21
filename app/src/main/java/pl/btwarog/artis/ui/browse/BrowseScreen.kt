@@ -13,9 +13,12 @@ import pl.btwarog.artis.R
 import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenBrowseBinding
 import pl.btwarog.artis.ui.ContentActivity
+import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
+import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsAdapter
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsLoadStateAdapter
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
+import pl.btwarog.artis.ui.utils.PopupHandler
 import pl.btwarog.artis.ui.utils.QueryTextListener
 import pl.btwarog.brainz.domain.error.NetworkException
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
@@ -80,32 +83,38 @@ class BrowseScreen :
 
 	override fun onScreenStateReceived(screenState: BrowseScreenState?) {
 		when (screenState) {
-			is BrowseScreenState.ArtistsListDataLoaded -> {
+			is ArtistsListDataLoaded -> {
 				adapter.submitData(
 					viewLifecycleOwner.lifecycle,
 					screenState.pagingData
 				)
 			}
-			is BrowseScreenState.BookmarkActionFinished -> {
-				binding.browseProgressView.progressView.isVisible = false
-				adapter.onItemChanged(screenState.position, screenState.bookmarked)
-			}
-			BrowseScreenState.BookmarkActionFailed -> {
-				binding.browseProgressView.progressView.isVisible = false
-			}
-			BrowseScreenState.BookmarkActionLoading -> {
-				binding.browseProgressView.progressView.isVisible = true
+			is ArtistsListInfo -> {
+				//For implementation at the end
 			}
 		}
 	}
 
 	override fun onScreenActionReceived(screenAction: BrowseScreenAction) {
-		if (screenAction is BrowseScreenAction.NavigateToDetail) {
-			(requireActivity() as ContentActivity).getActivityNavController().navigate(
-				R.id.action_bottomMenu_to_detail, bundleOf(
-					ARG_DETAIL_ARTIST_ID to screenAction.artistId
+		when (screenAction) {
+			is BrowseScreenAction.NavigateToDetail -> {
+				(requireActivity() as ContentActivity).getActivityNavController().navigate(
+					R.id.action_bottomMenu_to_detail, bundleOf(
+						ARG_DETAIL_ARTIST_ID to screenAction.artistId
+					)
 				)
-			)
+			}
+			is BrowseScreenAction.BookmarkActionFinished -> {
+				binding.browseProgressView.progressView.isVisible = false
+				adapter.onItemChanged(screenAction.position, screenAction.bookmarked)
+			}
+			BrowseScreenAction.BookmarkActionFailed -> {
+				PopupHandler.showMessage(requireContext())
+				binding.browseProgressView.progressView.isVisible = false
+			}
+			BrowseScreenAction.BookmarkActionLoading -> {
+				binding.browseProgressView.progressView.isVisible = true
+			}
 		}
 	}
 }

@@ -12,12 +12,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFailed
+import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFinished
+import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionLoading
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
-import pl.btwarog.artis.ui.browse.BrowseScreenState.BookmarkActionFailed
-import pl.btwarog.artis.ui.browse.BrowseScreenState.BookmarkActionFinished
-import pl.btwarog.artis.ui.browse.BrowseScreenState.BookmarkActionLoading
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 import pl.btwarog.brainz.domain.usecase.BookmarkArtistUseCase
 import pl.btwarog.brainz.domain.usecase.UnbookmarkArtistUseCase
@@ -79,21 +79,23 @@ class BrowseViewModel @AssistedInject constructor(
 		}
 	}
 
-	private fun unbookmarkArtist(position: Int, artistId: String) = work(BookmarkActionLoading) {
+	private fun unbookmarkArtist(position: Int, artistId: String) = work {
+		processScreenAction(BookmarkActionLoading)
 		try {
 			unbookmarkArtistUseCase.unbookmarkArtist(artistId)
-			processScreenState(BookmarkActionFinished(position, false))
+			processScreenAction(BookmarkActionFinished(position, false))
 		} catch (exception: Exception) {
-			processScreenState(BookmarkActionFailed)
+			processScreenAction(BookmarkActionFailed)
 		}
 	}
 
-	private fun bookmarkArtist(position: Int, artistId: String) = work(BookmarkActionLoading) {
+	private fun bookmarkArtist(position: Int, artistId: String) = work {
+		processScreenAction(BookmarkActionLoading)
 		try {
 			bookmarkArtistUseCase.bookmarkArtist(artistId, null)
-			processScreenState(BookmarkActionFinished(position, true))
+			processScreenAction(BookmarkActionFinished(position, true))
 		} catch (exception: Exception) {
-			processScreenState(BookmarkActionFailed)
+			processScreenAction(BookmarkActionFailed)
 		}
 	}
 
@@ -109,11 +111,11 @@ const val ARG_SEARCHED_QUERY = "ARG_SEARCHED_QUERY"
 sealed class BrowseScreenState : ScreenState {
 	class ArtistsListInfo(val expanded: Boolean) : BrowseScreenState()
 	class ArtistsListDataLoaded(val pagingData: PagingData<ArtistBasicInfo>) : BrowseScreenState()
-	object BookmarkActionLoading : BrowseScreenState()
-	object BookmarkActionFailed : BrowseScreenState()
-	class BookmarkActionFinished(val position: Int, val bookmarked: Boolean) : BrowseScreenState()
 }
 
 sealed class BrowseScreenAction : ScreenAction {
 	class NavigateToDetail(val artistId: String) : BrowseScreenAction()
+	object BookmarkActionLoading : BrowseScreenAction()
+	object BookmarkActionFailed : BrowseScreenAction()
+	class BookmarkActionFinished(val position: Int, val bookmarked: Boolean) : BrowseScreenAction()
 }
