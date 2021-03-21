@@ -44,6 +44,12 @@
 
 	<include
 		android:id="@+id/browseProgressView"
-		layout="@layout/layout_progress" />
+		layout="@layout/layout_progress"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/browseSearchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
