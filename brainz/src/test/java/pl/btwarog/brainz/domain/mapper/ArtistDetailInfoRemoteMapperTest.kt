@@ -3,7 +3,6 @@ package pl.btwarog.brainz.domain.mapper
 import io.mockk.*
 import org.assertj.core.api.Assertions.*
 import org.junit.*
-import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
 import pl.btwarog.brainz.domain.util.ArtistDetailInfoDataFactory
 import pl.btwarog.brainz.domain.util.CommonDataFactory
 

@@ -1,5 +1,6 @@
 package pl.btwarog.brainz.domain.util
 
+import pl.btwarog.brainz.data.cache.model.CachedBookmarkedArtistItem
 import pl.btwarog.brainz.data.remote.fragment.ArtistDetailFragment
 import pl.btwarog.brainz.data.remote.fragment.ArtistDetailFragment.Image
 import pl.btwarog.brainz.data.remote.fragment.ArtistDetailFragment.Rating
@@ -38,7 +39,22 @@ object ArtistDetailInfoDataFactory {
 		getDiscogBasicRemote()
 	)
 
-	fun getArtistDetailInfoDomain() = ArtistDetailInfo(
+	fun getArtistDetailInfoDomain(bookmarked: Boolean = false) = ArtistDetailInfo(
+		id = "i1234567890d",
+		name = "Nirvana",
+		disambiguation = "disambiguation",
+		realName = "Ada 123",
+		profile = "Interesting profile",
+		gender = "female",
+		type = "person",
+		country = "PL",
+		imageUrl = getImageDomain(),
+		discogImageUrl = getImageDomain(),
+		rating = 0.0,
+		bookmarked
+	)
+
+	fun getCachedBookmarkedArtistItem(bookmarked: Boolean = false) = CachedBookmarkedArtistItem(
 		id = "i1234567890d",
 		name = "Nirvana",
 		disambiguation = "disambiguation",
