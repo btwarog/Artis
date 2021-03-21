@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.github.ajalt.timberkt.d
 import pl.btwarog.artis.R
 import pl.btwarog.artis.databinding.ScreenBottomMenuBinding
 import pl.btwarog.core_ui.presentation.ui.BaseFragment
@@ -21,5 +22,8 @@ class BottomMenuScreen : BaseFragment<ScreenBottomMenuBinding>(R.layout.screen_b
 	private fun setBottomMenu() {
 		val navHost = childFragmentManager.findFragmentById(R.id.bottomMenuNavHost) as NavHostFragment
 		NavigationUI.setupWithNavController(binding.bottomNavigationMenu, navHost.navController)
+		binding.bottomNavigationMenu.setOnNavigationItemReselectedListener {
+			d { "Prevent reloading fragment" }
+		}
 	}
 }
