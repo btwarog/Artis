@@ -6,8 +6,8 @@ internal object Versions {
 	const val gradle_android_version = "4.1.2"
 
 	/* Kotlin */
-	const val kotlin_version = "1.4.21"
-	const val kotlin_coroutines_version = "1.4.2"
+	const val kotlin_version = "1.4.30"
+	const val kotlin_coroutines_version = "1.4.3"
 
 	/* Google */
 	const val appcompat_version = "1.2.0"

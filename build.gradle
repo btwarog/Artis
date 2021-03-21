@@ -40,7 +40,8 @@ subprojects {
 				kotlinOptions {
 					jvmTarget = AppConfig.jvmTarget
 					freeCompilerArgs += [
-							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+							'-Xopt-in=kotlin.time.ExperimentalTime',
 					]
 				}
 			}
@@ -52,7 +53,8 @@ subprojects {
 				kotlinOptions {
 					jvmTarget = AppConfig.jvmTarget
 					freeCompilerArgs += [
-							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+							'-Xopt-in=kotlin.time.ExperimentalTime',
 					]
 				}
 			}
@@ -60,7 +62,8 @@ subprojects {
 				kotlinOptions {
 					jvmTarget = AppConfig.jvmTarget
 					freeCompilerArgs += [
-							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+							"-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+							'-Xopt-in=kotlin.time.ExperimentalTime',
 					]
 				}
 			}

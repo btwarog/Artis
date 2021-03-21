@@ -1,5 +1,6 @@
 package pl.btwarog.core_ui.presentation.ui
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
@@ -17,11 +18,11 @@ open class BaseViewModel<STATE : ScreenState, SCREEN_ACTION : ScreenAction>(prot
 	ViewModel() {
 
 	private val _screenState = MutableStateFlow<STATE?>(null)
-	internal val screenState: StateFlow<STATE?>
+	val screenState: StateFlow<STATE?>
 		get() = _screenState
 
 	private val _screenAction = Channel<SCREEN_ACTION>(Channel.BUFFERED)
-	internal val screenAction: Flow<SCREEN_ACTION>
+	val screenAction: Flow<SCREEN_ACTION>
 		get() = _screenAction.receiveAsFlow()
 
 	private var currentWork: Job? = null

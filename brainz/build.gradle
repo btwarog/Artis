@@ -39,5 +39,4 @@ dependencies {
 	testImplementation AppDependencies.coroutines_test
 	testImplementation AppDependencies.mockk
 	testImplementation AppDependencies.assertj
-	testImplementation AppDependencies.turbine
 }

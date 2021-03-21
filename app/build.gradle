@@ -53,6 +53,10 @@ dependencies {
 	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
+	testImplementation AppDependencies.coroutines_test
+	testImplementation AppDependencies.mockk
+	testImplementation AppDependencies.assertj
+	testImplementation AppDependencies.turbine
 	androidTestImplementation AppDependencies.android_junit
 	androidTestImplementation AppDependencies.android_espresso
 }
