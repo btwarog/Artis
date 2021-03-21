@@ -13,12 +13,12 @@
 			android:id="@+id/detailImage"
 			android:layout_width="0dp"
 			android:layout_height="250dp"
-			android:background="@color/grey"
 			android:contentDescription="@string/content_description_artist_image"
 			android:scaleType="centerCrop"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toTopOf="parent"
+			tools:src="@drawable/bg_no_image" />
 
 		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/detailArtistAction"

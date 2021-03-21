@@ -1,0 +1,10 @@
+android {
+    signingConfigs {
+        demo {
+            storeFile file("../keys/demo.keystore")
+            storePassword "demoKey"
+            keyAlias "demo_key"
+            keyPassword "demoKey"
+        }
+    }
+}
