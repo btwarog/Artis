@@ -6,8 +6,11 @@ import com.apollographql.apollo.ApolloClient
 import dagger.Module
 import dagger.Provides
 import pl.btwarog.brainz.data.cache.db.BookmarkedArtistsDatabase
+import pl.btwarog.brainz.domain.ArtistsCache
 import pl.btwarog.brainz.domain.ArtistsRemote
 import pl.btwarog.brainz.domain.ArtistsRepository
+import pl.btwarog.brainz.domain.cache.IArtistsCache
+import pl.btwarog.brainz.domain.mapper.ArtistDetailInfoCacheMapper
 import pl.btwarog.brainz.domain.mapper.ArtistDetailInfoRemoteMapper
 import pl.btwarog.brainz.domain.mapper.PaginatedArtistsListRemoteMapper
 import pl.btwarog.brainz.domain.remote.IArtistsRemote
@@ -20,9 +23,10 @@ object BrainzDataModule {
 	@Provides
 	@Singleton
 	fun provideArtistRepository(
-		artistsRemote: IArtistsRemote
+		artistsRemote: IArtistsRemote,
+		artistsCache: IArtistsCache
 	): IArtistsRepository {
-		return ArtistsRepository(artistsRemote)
+		return ArtistsRepository(artistsRemote, artistsCache)
 	}
 
 	@Provides
@@ -35,6 +39,15 @@ object BrainzDataModule {
 			BookmarkedArtistsDatabase::class.java,
 			"bookmarkedArtists"
 		).build()
+	}
+
+	@Provides
+	@Singleton
+	fun provideArtistsCache(
+		bookmarkedArtistsDatabase: BookmarkedArtistsDatabase,
+		artistDetailInfoCacheMapper: ArtistDetailInfoCacheMapper
+	): IArtistsCache {
+		return ArtistsCache(bookmarkedArtistsDatabase, artistDetailInfoCacheMapper)
 	}
 
 	@Provides
