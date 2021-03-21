@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/artistCardView"
 	android:layout_width="match_parent"
-	android:layout_height="250dp"
+	android:layout_height="150dp"
 	android:layout_marginHorizontal="@dimen/size_16"
 	android:layout_marginVertical="@dimen/size_16"
 	app:layout_constraintBottom_toBottomOf="parent"
@@ -22,17 +22,10 @@
 			android:layout_height="0dp"
 			android:background="@color/grey"
 			android:contentDescription="@string/content_description_artist_image"
-			app:layout_constraintBottom_toTopOf="@+id/artistCardSplitter"
-			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintDimensionRatio="H,1:1"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
-
-		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/artistCardSplitter"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			app:layout_constraintGuide_percent="0.4" />
 
 		<com.google.android.material.textview.MaterialTextView
 			android:id="@+id/artistName"
@@ -47,8 +40,8 @@
 			app:autoSizeMinTextSize="@dimen/text_size_12"
 			app:autoSizeTextType="uniform"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/artistCardSplitter"
+			app:layout_constraintStart_toEndOf="@+id/artistCardImage"
+			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Artist name" />
 
 		<com.google.android.material.textview.MaterialTextView
@@ -65,7 +58,7 @@
 			app:autoSizeTextType="uniform"
 			app:layout_constraintBottom_toTopOf="@+id/artistAction"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/artistCardImage"
 			app:layout_constraintTop_toBottomOf="@+id/artistName"
 			app:layout_constraintVertical_bias="0"
 			tools:text="Disambiguation" />
@@ -74,10 +67,8 @@
 			android:id="@+id/artistAction"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="@dimen/size_16"
-			android:layout_marginBottom="@dimen/size_16"
 			android:background="?attr/selectableItemBackground"
-			android:padding="@dimen/size_8"
+			android:padding="@dimen/size_16"
 			android:src="@drawable/ic_not_bookmarked"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
