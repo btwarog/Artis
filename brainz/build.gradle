@@ -30,6 +30,9 @@ dependencies {
 	api AppDependencies.apollo_runtime
 	api AppDependencies.apollo_coroutines
 
+	api AppDependencies.room_ktx
+	kapt AppDependencies.room_compiler
+
 	kapt AppDependencies.dagger_compiler
 
 	testImplementation AppDependencies.junit
