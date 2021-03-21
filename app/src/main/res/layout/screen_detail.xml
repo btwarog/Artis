@@ -27,13 +27,13 @@
 			layout="@layout/layout_detail_artist_information" />
 
 		<include
-			android:id="@+id/detailProgressView"
-			layout="@layout/layout_progress" />
-
-		<include
 			android:id="@+id/detailErrorView"
 			layout="@layout/layout_error" />
 
 	</ViewFlipper>
+
+	<include
+		android:id="@+id/detailProgressView"
+		layout="@layout/layout_progress" />
 
 </LinearLayout>

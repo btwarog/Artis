@@ -3,6 +3,8 @@
 	<dimen name="size_8">8dp</dimen>
 	<dimen name="size_16">16dp</dimen>
 	<dimen name="size_32">32dp</dimen>
+	<dimen name="size_64">64dp</dimen>
 	<dimen name="big_progress_size">64dp</dimen>
 	<dimen name="text_size_12">12sp</dimen>
+	<dimen name="list_item_height">150dp</dimen>
 </resources>

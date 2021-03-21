@@ -20,6 +20,18 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/detailArtistAction"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?attr/selectableItemBackground"
+			android:padding="@dimen/size_16"
+			android:src="@drawable/ic_not_bookmarked"
+			app:layout_constraintBottom_toBottomOf="@+id/detailImage"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:srcCompat="@drawable/ic_not_bookmarked"
+			app:tint="?attr/colorSecondary" />
+
 		<com.google.android.material.textview.MaterialTextView
 			android:id="@+id/detailNameTitle"
 			style="@style/TextAppearance.AppCompat.Title"

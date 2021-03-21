@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import pl.btwarog.artis.R
 import pl.btwarog.artis.databinding.ItemArtistBinding
+import pl.btwarog.artis.ui.utils.getBookmarkActionIconDescription
+import pl.btwarog.artis.ui.utils.getBookmarkIconDrawable
 import pl.btwarog.artis.ui.utils.loadUrlImage
 import pl.btwarog.brainz.domain.model.IArtistListInfo
 
@@ -26,7 +28,7 @@ class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 				artistAction.setImageDrawable(
 					ContextCompat.getDrawable(
 						artistCardImage.context,
-						getBookmarkActionIcon(this)
+						getBookmarkIconDrawable(this)
 					)
 				)
 				artistAction.contentDescription =
@@ -42,20 +44,6 @@ class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 			onItemClickedListener(artistInfo.id)
 		}
 	}
-
-	private fun getBookmarkActionIcon(bookmarked: Boolean) =
-		if (bookmarked) {
-			R.drawable.ic_bookmarked
-		} else {
-			R.drawable.ic_not_bookmarked
-		}
-
-	private fun getBookmarkActionIconDescription(bookmarked: Boolean) =
-		if (bookmarked) {
-			R.string.content_description_unbookmark_button
-		} else {
-			R.string.content_description_bookmark_button
-		}
 
 	companion object {
 
