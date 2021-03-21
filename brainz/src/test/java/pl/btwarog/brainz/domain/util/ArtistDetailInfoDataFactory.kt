@@ -54,7 +54,7 @@ object ArtistDetailInfoDataFactory {
 		bookmarked
 	)
 
-	fun getCachedBookmarkedArtistItem(bookmarked: Boolean = false) = CachedBookmarkedArtistItem(
+	fun getCachedBookmarkedArtistItem() = CachedBookmarkedArtistItem(
 		id = "i1234567890d",
 		name = "Nirvana",
 		disambiguation = "disambiguation",
