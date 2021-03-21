@@ -46,12 +46,15 @@ class BrowseViewModel @AssistedInject constructor(
 	}
 
 	fun searchArtist(query: String) {
-		savedStateHandle[ARG_SEARCHED_QUERY] = query
-		pagingJob?.cancel()
-		pagingJob = viewModelScope.launch {
-			artistListDataFactory.create(query).cachedIn(viewModelScope).collect { data ->
-				withContext(dispatcherExecutor.resultDispatcher) {
-					processScreenState(ArtistsListDataLoaded(data))
+		val lastQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY)
+		if (lastQuery != query) {
+			savedStateHandle[ARG_SEARCHED_QUERY] = query
+			pagingJob?.cancel()
+			pagingJob = viewModelScope.launch {
+				artistListDataFactory.create(query).cachedIn(viewModelScope).collect { data ->
+					withContext(dispatcherExecutor.resultDispatcher) {
+						processScreenState(ArtistsListDataLoaded(data))
+					}
 				}
 			}
 		}

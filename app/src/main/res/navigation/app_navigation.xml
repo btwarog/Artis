@@ -34,7 +34,7 @@
 	<fragment
 		android:id="@+id/detail"
 		android:name="pl.btwarog.artis.ui.detail.DetailScreen"
-		android:label="Detail Screen"
+		android:label="@string/artist_detail_title"
 		tools:layout="@layout/screen_detail" />
 
 </navigation>

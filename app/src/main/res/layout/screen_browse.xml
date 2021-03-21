@@ -9,11 +9,12 @@
 	<androidx.appcompat.widget.SearchView
 		android:id="@+id/browseSearchView"
 		android:layout_width="0dp"
-		app:defaultQueryHint="@string/browse_search_hint"
 		android:layout_height="wrap_content"
-		app:layout_constraintTop_toTopOf="parent"
+		app:defaultQueryHint="@string/browse_search_hint"
+		app:iconifiedByDefault="false"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent" />
+		app:layout_constraintTop_toTopOf="parent" />
 
 	<ViewFlipper
 		android:id="@+id/browseViewFlipper"

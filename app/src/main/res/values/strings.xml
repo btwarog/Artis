@@ -3,6 +3,15 @@
 	<string name="bottom_tab_browse_title">Browse</string>
 	<string name="bottom_tab_bookmarks_title">Bookmarks</string>
 	<string name="browse_search_hint">Browse the artist! ;)</string>
+	<string name="artist_detail_title">Artist detail</string>
+	<string name="artist_detail_name_title">Name:</string>
+	<string name="artist_detail_disambiguation_title">Disambiguation:</string>
+	<string name="artist_detail_real_name_title">Real name:</string>
+	<string name="artist_detail_profile_title">Profile:</string>
+	<string name="artist_detail_gender_title">Gender:</string>
+	<string name="artist_detail_type_title">Type:</string>
+	<string name="artist_detail_country_title">Country:</string>
+	<string name="artist_rating_title">Country:</string>
 	<string name="common_try_again_title">Try again</string>
 	<string name="common_network_issue">Please check your network. Please try again.</string>
 	<string name="common_general_issue">We\'re having some issues, sorry. Please try again.</string>

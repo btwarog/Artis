@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:orientation="vertical"
 	tools:context=".ui.ContentActivity">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Detail"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+	<com.google.android.material.appbar.MaterialToolbar
+		android:id="@+id/detailToolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+	<ViewFlipper
+		android:id="@+id/detailViewFlipper"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/browseSearchView">
+
+		<include
+			android:id="@+id/detailContent"
+			layout="@layout/layout_detail_artist_information" />
+
+		<include
+			android:id="@+id/detailProgressView"
+			layout="@layout/layout_progress" />
+
+		<include
+			android:id="@+id/detailErrorView"
+			layout="@layout/layout_error" />
+
+	</ViewFlipper>
+
+</LinearLayout>
