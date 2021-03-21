@@ -10,7 +10,7 @@ import pl.btwarog.core_ui.presentation.model.ScreenAction
 import pl.btwarog.core_ui.presentation.model.ScreenState
 import javax.inject.Inject
 
-abstract class BaseViewModelFragment<VB : ViewBinding, STATE : pl.btwarog.core_ui.presentation.model.ScreenState, ACTION : pl.btwarog.core_ui.presentation.model.ScreenAction, VM : BaseViewModel<STATE, ACTION>>(
+abstract class BaseViewModelFragment<VB : ViewBinding, STATE : ScreenState, ACTION : ScreenAction, VM : BaseViewModel<STATE, ACTION>>(
 	@LayoutRes layoutId: Int
 ) : BaseFragment<VB>(layoutId) {
 

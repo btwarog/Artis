@@ -10,7 +10,6 @@ import org.assertj.core.api.Assertions
 import org.junit.*
 import pl.btwarog.brainz.domain.error.ResultWrapper
 import pl.btwarog.brainz.domain.repository.IArtistsRepository
-import pl.btwarog.brainz.domain.util.ArtistBasicInfoDataFactory
 import pl.btwarog.brainz.domain.util.ArtistDetailInfoDataFactory
 
 class GetArtistDetailUseCaseTest {

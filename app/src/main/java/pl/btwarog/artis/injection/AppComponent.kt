@@ -7,7 +7,6 @@ import pl.btwarog.artis.ArtisApp
 import pl.btwarog.artis.ui.bookmarks.BookmarksScreen
 import pl.btwarog.artis.ui.browse.BrowseScreen
 import pl.btwarog.artis.ui.detail.DetailScreen
-import pl.btwarog.artis.ui.splash.SplashScreen
 import pl.btwarog.brainz.injection.BrainzDataModule
 import pl.btwarog.brainz.injection.BrainzNetworkModule
 import javax.inject.Singleton

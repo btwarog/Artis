@@ -11,7 +11,7 @@ object ArtistDetailInfoDataFactory {
 
 	fun getMediaWikiImageRemote() = ArtistDetailFragment.MediaWikiImage("MediaWikiImage", "urlToTheImage")
 
-	fun getDiscogBasicRemote() = ArtistDetailFragment.Discogs(
+	private fun getDiscogBasicRemote() = ArtistDetailFragment.Discogs(
 		"Discog",
 		"Ada 123",
 		"Interesting profile",
