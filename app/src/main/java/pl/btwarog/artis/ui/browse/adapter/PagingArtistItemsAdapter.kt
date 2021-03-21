@@ -2,14 +2,14 @@ package pl.btwarog.artis.ui.browse.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import pl.btwarog.brainz.domain.model.ArtistBasicInfo
+import pl.btwarog.artis.ui.common.adapter.ArtistItemsViewHolder
+import pl.btwarog.artis.ui.common.adapter.ArtistItemsViewHolder.Companion.ITEM_COMPARATOR
+import pl.btwarog.brainz.domain.model.IArtistListInfo
 
-class ArtistItemsAdapter(
+class PagingArtistItemsAdapter(
 	private val onItemClickedListener: (String) -> Unit,
 	private val onBookmarkClickedListener: (Int, String, Boolean) -> Unit
-) :
-	PagingDataAdapter<ArtistBasicInfo, ArtistItemsViewHolder>(ITEM_COMPARATOR) {
+) : PagingDataAdapter<IArtistListInfo, ArtistItemsViewHolder>(ITEM_COMPARATOR) {
 
 	override fun getItemViewType(position: Int): Int {
 		return if (position == itemCount) CONTENT_ITEM else LOADING_ITEM
@@ -36,11 +36,5 @@ class ArtistItemsAdapter(
 
 		const val CONTENT_ITEM = 0
 		const val LOADING_ITEM = 1
-
-		private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<ArtistBasicInfo>() {
-			override fun areItemsTheSame(oldItem: ArtistBasicInfo, newItem: ArtistBasicInfo) = oldItem.id == newItem.id
-
-			override fun areContentsTheSame(oldItem: ArtistBasicInfo, newItem: ArtistBasicInfo) = oldItem == newItem
-		}
 	}
 }

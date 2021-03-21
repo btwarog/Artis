@@ -15,8 +15,8 @@ import pl.btwarog.artis.databinding.ScreenBrowseBinding
 import pl.btwarog.artis.ui.ContentActivity
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
-import pl.btwarog.artis.ui.browse.adapter.ArtistItemsAdapter
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsLoadStateAdapter
+import pl.btwarog.artis.ui.browse.adapter.PagingArtistItemsAdapter
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
 import pl.btwarog.artis.ui.utils.PopupHandler
 import pl.btwarog.artis.ui.utils.QueryTextListener
@@ -27,7 +27,7 @@ import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
 class BrowseScreen :
 	BaseViewModelFragment<ScreenBrowseBinding, BrowseScreenState, BrowseScreenAction, BrowseViewModel>(R.layout.screen_browse) {
 
-	private lateinit var adapter: ArtistItemsAdapter
+	private lateinit var adapterPaging: PagingArtistItemsAdapter
 
 	override fun inject() {
 		appComponent.inject(this)
@@ -40,7 +40,7 @@ class BrowseScreen :
 
 	override fun initView(savedInstanceState: Bundle?) {
 		binding.browseErrorView.retryButton.setOnClickListener {
-			adapter.retry()
+			adapterPaging.retry()
 		}
 		binding.browseSearchView.setOnQueryTextListener(QueryTextListener(lifecycleScope) { query ->
 			viewModel.searchArtist(query ?: "")
@@ -49,7 +49,7 @@ class BrowseScreen :
 	}
 
 	private fun initAdapter() {
-		adapter = ArtistItemsAdapter(
+		adapterPaging = PagingArtistItemsAdapter(
 			{ artistId ->
 				viewModel.onArtistClicked(artistId)
 			},
@@ -58,10 +58,10 @@ class BrowseScreen :
 			}
 		)
 		binding.browseList.itemAnimator = null
-		binding.browseList.adapter = adapter.withLoadStateFooter(
-			ArtistItemsLoadStateAdapter { adapter.retry() }
+		binding.browseList.adapter = adapterPaging.withLoadStateFooter(
+			ArtistItemsLoadStateAdapter { adapterPaging.retry() }
 		)
-		adapter.addLoadStateListener { loadState ->
+		adapterPaging.addLoadStateListener { loadState ->
 			when (val state = loadState.source.refresh) {
 				is LoadState.NotLoading -> {
 					binding.browseViewFlipper.displayedChild = 0
@@ -84,7 +84,7 @@ class BrowseScreen :
 	override fun onScreenStateReceived(screenState: BrowseScreenState?) {
 		when (screenState) {
 			is ArtistsListDataLoaded -> {
-				adapter.submitData(
+				adapterPaging.submitData(
 					viewLifecycleOwner.lifecycle,
 					screenState.pagingData
 				)
@@ -106,7 +106,7 @@ class BrowseScreen :
 			}
 			is BrowseScreenAction.BookmarkActionFinished -> {
 				binding.browseProgressView.progressView.isVisible = false
-				adapter.onItemChanged(screenAction.position, screenAction.bookmarked)
+				adapterPaging.onItemChanged(screenAction.position, screenAction.bookmarked)
 			}
 			BrowseScreenAction.BookmarkActionFailed -> {
 				PopupHandler.showMessage(requireContext())

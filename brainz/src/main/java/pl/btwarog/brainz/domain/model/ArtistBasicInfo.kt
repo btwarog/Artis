@@ -1,13 +1,10 @@
 package pl.btwarog.brainz.domain.model
 
 data class ArtistBasicInfo(
-	val id: String,
-	val name: String,
-	val disambiguation: String,
-	val imageUrl: String,
-	val discogImageUrl: String,
-	var bookmarked: Boolean = false
-) {
-
-	fun getArtistImageUrl() = if (imageUrl.isEmpty()) discogImageUrl else imageUrl
-}
+	override val id: String,
+	override val name: String,
+	override val disambiguation: String,
+	override val imageUrl: String,
+	override val discogImageUrl: String,
+	override var bookmarked: Boolean = false
+) : IArtistListInfo

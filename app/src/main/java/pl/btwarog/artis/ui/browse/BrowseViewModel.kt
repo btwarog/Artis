@@ -18,7 +18,7 @@ import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionLoading
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
-import pl.btwarog.brainz.domain.model.ArtistBasicInfo
+import pl.btwarog.brainz.domain.model.IArtistListInfo
 import pl.btwarog.brainz.domain.usecase.BookmarkArtistUseCase
 import pl.btwarog.brainz.domain.usecase.UnbookmarkArtistUseCase
 import pl.btwarog.brainz.presentation.paging.factory.ArtistListDataFactory
@@ -110,7 +110,7 @@ const val ARG_SEARCHED_QUERY = "ARG_SEARCHED_QUERY"
 
 sealed class BrowseScreenState : ScreenState {
 	class ArtistsListInfo(val expanded: Boolean) : BrowseScreenState()
-	class ArtistsListDataLoaded(val pagingData: PagingData<ArtistBasicInfo>) : BrowseScreenState()
+	class ArtistsListDataLoaded(val pagingData: PagingData<IArtistListInfo>) : BrowseScreenState()
 }
 
 sealed class BrowseScreenAction : ScreenAction {

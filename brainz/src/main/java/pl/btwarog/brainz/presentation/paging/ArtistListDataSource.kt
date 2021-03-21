@@ -7,6 +7,7 @@ import pl.btwarog.brainz.domain.error.GeneralException
 import pl.btwarog.brainz.domain.error.NetworkException
 import pl.btwarog.brainz.domain.error.ResultWrapper
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
+import pl.btwarog.brainz.domain.model.IArtistListInfo
 import pl.btwarog.brainz.domain.model.PaginatedList
 import pl.btwarog.brainz.domain.usecase.GetArtistsListUseCase
 
@@ -15,18 +16,19 @@ class ArtistListDataSource(
 	private val getArtistsListUseCase: GetArtistsListUseCase,
 	private val pagingConfig: PagingConfig
 ) :
-	PagingSource<String, ArtistBasicInfo>() {
+	PagingSource<String, IArtistListInfo>() {
 
-	override fun getRefreshKey(state: PagingState<String, ArtistBasicInfo>): String? =
+	override fun getRefreshKey(state: PagingState<String, IArtistListInfo>): String? =
 		state.anchorPosition?.let { position ->
 			state.closestPageToPosition(position)?.nextKey
 		}
 
-	override suspend fun load(params: LoadParams<String>): LoadResult<String, ArtistBasicInfo> {
+	override suspend fun load(params: LoadParams<String>): LoadResult<String, IArtistListInfo> {
 		return when (val data = getData(params)) {
 			is ResultWrapper.Success<PaginatedList<ArtistBasicInfo>> -> {
+				val list = data.value.results ?: listOf()
 				LoadResult.Page(
-					data.value.results ?: listOf(),
+					list as List<IArtistListInfo>,
 					params.key,
 					if (data.value.hasNextPage) data.value.nextPageCursor else null
 				)
