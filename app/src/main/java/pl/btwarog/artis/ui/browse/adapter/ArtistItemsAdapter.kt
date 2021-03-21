@@ -5,7 +5,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 
-class ArtistItemsAdapter(private val onItemClickedListener: (String) -> Unit) :
+class ArtistItemsAdapter(
+	private val onItemClickedListener: (String) -> Unit,
+	private val onBookmarkClickedListener: (Int, String, Boolean) -> Unit
+) :
 	PagingDataAdapter<ArtistBasicInfo, ArtistItemsViewHolder>(ITEM_COMPARATOR) {
 
 	override fun getItemViewType(position: Int): Int {
@@ -13,13 +16,20 @@ class ArtistItemsAdapter(private val onItemClickedListener: (String) -> Unit) :
 	}
 
 	override fun onBindViewHolder(holder: ArtistItemsViewHolder, position: Int) {
-		getItem(position)?.let {
-			holder.bind(it, onItemClickedListener)
+		getItem(position)?.let { artistInfo ->
+			holder.bind(position, artistInfo, onItemClickedListener, onBookmarkClickedListener)
 		}
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistItemsViewHolder {
 		return ArtistItemsViewHolder.create(parent)
+	}
+
+	fun onItemChanged(position: Int, bookmarked: Boolean) {
+		getItem(position)?.let {
+			it.bookmarked = bookmarked
+		}
+		notifyItemChanged(position)
 	}
 
 	companion object {

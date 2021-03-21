@@ -37,13 +37,13 @@
 			tools:listitem="@layout/item_artist" />
 
 		<include
-			android:id="@+id/browseProgressView"
-			layout="@layout/layout_progress" />
-
-		<include
 			android:id="@+id/browseErrorView"
 			layout="@layout/layout_error" />
 
 	</ViewFlipper>
+
+	<include
+		android:id="@+id/browseProgressView"
+		layout="@layout/layout_progress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

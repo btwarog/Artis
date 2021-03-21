@@ -12,7 +12,12 @@ import pl.btwarog.brainz.domain.model.ArtistBasicInfo
 class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 	RecyclerView.ViewHolder(binding.root) {
 
-	fun bind(artistInfo: ArtistBasicInfo, onItemClickedListener: (String) -> Unit) {
+	fun bind(
+		position: Int,
+		artistInfo: ArtistBasicInfo,
+		onItemClickedListener: (String) -> Unit,
+		onBookmarkClickedListener: (Int, String, Boolean) -> Unit
+	) {
 		with(binding) {
 			artistName.text = artistInfo.name
 			artistDisambiguation.text = artistInfo.disambiguation
@@ -25,6 +30,9 @@ class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 				)
 				artistAction.contentDescription =
 					artistAction.context.getString(getBookmarkActionIconDescription(this))
+				artistAction.setOnClickListener {
+					onBookmarkClickedListener(position, artistInfo.id, artistInfo.bookmarked)
+				}
 			}
 			artistDisambiguation.text = artistInfo.disambiguation
 			artistCardImage.loadUrlImage(artistInfo.getArtistImageUrl())
