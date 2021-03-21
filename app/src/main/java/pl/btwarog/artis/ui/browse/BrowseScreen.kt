@@ -59,6 +59,7 @@ class BrowseScreen :
 		binding.browseList.adapter = adapterPaging.withLoadStateFooter(
 			ArtistItemsLoadStateAdapter { adapterPaging.retry() }
 		)
+		binding.browseList.itemAnimator = null
 		adapterPaging.addLoadStateListener { loadState ->
 			when (val state = loadState.source.refresh) {
 				is LoadState.NotLoading -> {

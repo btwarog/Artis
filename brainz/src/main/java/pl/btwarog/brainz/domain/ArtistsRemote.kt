@@ -24,12 +24,11 @@ internal class ArtistsRemote(
 		nextPageCursor: String?
 	): PaginatedList<ArtistBasicInfo> {
 		val data = apolloClient.query(getArtistsBrowseQuery(searchQuery, pageSize, nextPageCursor)).await()
-		if (data.errors?.isNotEmpty() == true) throw ApolloException(data.errors?.first()?.message ?: "")
 		val result = data.data?.search()?.artists()
 		return if (result != null) {
 			paginatedArtistsListRemoteMapper.mapFromRemote(result)
 		} else {
-			throw ApolloException("Empty list")
+			throw ApolloException(data.errors?.first()?.message ?: "Unknown Error")
 		}
 	}
 
