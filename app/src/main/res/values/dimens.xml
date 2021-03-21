@@ -7,4 +7,6 @@
 	<dimen name="big_progress_size">64dp</dimen>
 	<dimen name="text_size_12">12sp</dimen>
 	<dimen name="list_item_height">150dp</dimen>
+	<dimen name="search_view_height">56dp</dimen>
+	<dimen name="list_container_top_padding">70dp</dimen>
 </resources>
