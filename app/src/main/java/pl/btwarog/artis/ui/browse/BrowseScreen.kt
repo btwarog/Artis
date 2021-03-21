@@ -14,7 +14,6 @@ import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenBrowseBinding
 import pl.btwarog.artis.ui.ContentActivity
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
-import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
 import pl.btwarog.artis.ui.browse.adapter.ArtistItemsLoadStateAdapter
 import pl.btwarog.artis.ui.browse.adapter.PagingArtistItemsAdapter
 import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
@@ -92,9 +91,6 @@ class BrowseScreen :
 					viewLifecycleOwner.lifecycle,
 					screenState.pagingData
 				)
-			}
-			is ArtistsListInfo -> {
-				//For implementation at the end
 			}
 		}
 	}

@@ -18,7 +18,6 @@ import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionLoading
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.RefreshPagingData
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
-import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListInfo
 import pl.btwarog.brainz.domain.model.IArtistListInfo
 import pl.btwarog.brainz.domain.usecase.BookmarkArtistUseCase
 import pl.btwarog.brainz.domain.usecase.UnbookmarkArtistUseCase
@@ -42,25 +41,22 @@ class BrowseViewModel @AssistedInject constructor(
 	private var forceRefresh = false
 
 	init {
-		val searchedQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY)
-		if (searchedQuery != null) {
-			if (searchedQuery.isNotEmpty()) {
-				searchArtist(searchedQuery)
-			} else {
-				processScreenState(ArtistsListInfo(false))
-			}
-		} else {
-			processScreenState(ArtistsListInfo(true))
-		}
+		val searchedQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY) ?: DEFAULT_SEARCH
+		searchArtist(searchedQuery)
 	}
 
 	fun searchArtist(query: String) {
+		val newQuery = if (query.isEmpty()) {
+			DEFAULT_SEARCH
+		} else {
+			query
+		}
 		val lastQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY)
-		if (lastQuery != query) {
-			savedStateHandle[ARG_SEARCHED_QUERY] = query
+		if (lastQuery != newQuery) {
+			savedStateHandle[ARG_SEARCHED_QUERY] = newQuery
 			pagingJob?.cancel()
 			pagingJob = viewModelScope.launch {
-				artistListDataFactory.create(query).cachedIn(viewModelScope).collect { data ->
+				artistListDataFactory.create(newQuery).cachedIn(viewModelScope).collect { data ->
 					withContext(dispatcherExecutor.resultDispatcher) {
 						processScreenState(ArtistsListDataLoaded(data))
 					}
@@ -114,12 +110,16 @@ class BrowseViewModel @AssistedInject constructor(
 
 		override fun create(handle: SavedStateHandle): BrowseViewModel
 	}
+
+	companion object {
+
+		private const val DEFAULT_SEARCH = "*"
+	}
 }
 
 const val ARG_SEARCHED_QUERY = "ARG_SEARCHED_QUERY"
 
 sealed class BrowseScreenState : ScreenState {
-	class ArtistsListInfo(val expanded: Boolean) : BrowseScreenState()
 	class ArtistsListDataLoaded(val pagingData: PagingData<IArtistListInfo>) : BrowseScreenState()
 }
 
