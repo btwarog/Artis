@@ -15,13 +15,10 @@ class ArtistListDataSource(
 	private val query: String,
 	private val getArtistsListUseCase: GetArtistsListUseCase,
 	private val pagingConfig: PagingConfig
-) :
-	PagingSource<String, IArtistListInfo>() {
+) : PagingSource<String, IArtistListInfo>() {
 
 	override fun getRefreshKey(state: PagingState<String, IArtistListInfo>): String? =
-		state.anchorPosition?.let { position ->
-			state.closestPageToPosition(position)?.nextKey
-		}
+		null
 
 	override suspend fun load(params: LoadParams<String>): LoadResult<String, IArtistListInfo> {
 		return when (val data = getData(params)) {
