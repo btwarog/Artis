@@ -16,11 +16,11 @@ import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFailed
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionFinished
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.BookmarkActionLoading
 import pl.btwarog.artis.ui.browse.BrowseScreenAction.NavigateToDetail
-import pl.btwarog.artis.ui.browse.BrowseScreenAction.RefreshPagingData
 import pl.btwarog.artis.ui.browse.BrowseScreenState.ArtistsListDataLoaded
 import pl.btwarog.brainz.domain.model.IArtistListInfo
 import pl.btwarog.brainz.domain.usecase.BookmarkArtistUseCase
 import pl.btwarog.brainz.domain.usecase.UnbookmarkArtistUseCase
+import pl.btwarog.brainz.domain.usecase.VerifyArtistBookmarkedUseCase
 import pl.btwarog.brainz.presentation.paging.factory.ArtistListDataFactory
 import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core_ui.presentation.model.ScreenAction
@@ -34,6 +34,7 @@ class BrowseViewModel @AssistedInject constructor(
 	private val artistListDataFactory: ArtistListDataFactory,
 	private val bookmarkArtistUseCase: BookmarkArtistUseCase,
 	private val unbookmarkArtistUseCase: UnbookmarkArtistUseCase,
+	private val verifyArtistBookmarkedUseCase: VerifyArtistBookmarkedUseCase,
 	@Assisted private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<BrowseScreenState, BrowseScreenAction>(dispatcherExecutor) {
 
@@ -42,17 +43,17 @@ class BrowseViewModel @AssistedInject constructor(
 
 	init {
 		val searchedQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY) ?: DEFAULT_SEARCH
-		searchArtist(searchedQuery)
+		searchArtist(searchedQuery, true)
 	}
 
-	fun searchArtist(query: String) {
+	fun searchArtist(query: String, force: Boolean = false) {
 		val newQuery = if (query.isEmpty()) {
 			DEFAULT_SEARCH
 		} else {
 			query
 		}
 		val lastQuery = savedStateHandle.get<String>(ARG_SEARCHED_QUERY)
-		if (lastQuery != newQuery) {
+		if (lastQuery != newQuery || force) {
 			savedStateHandle[ARG_SEARCHED_QUERY] = newQuery
 			pagingJob?.cancel()
 			pagingJob = viewModelScope.launch {
@@ -65,8 +66,10 @@ class BrowseViewModel @AssistedInject constructor(
 		}
 	}
 
-	fun onArtistClicked(artistId: String) {
+	fun onArtistClicked(position: Int, artistId: String) {
 		forceRefresh = true
+		savedStateHandle[ARG_ITEM_ID] = artistId
+		savedStateHandle[ARG_ITEM_POSITION] = position
 		processScreenAction(NavigateToDetail(artistId))
 	}
 
@@ -99,9 +102,17 @@ class BrowseViewModel @AssistedInject constructor(
 	}
 
 	fun checkData() {
-		if (forceRefresh) {
+		val artistId = savedStateHandle.get<String>(ARG_ITEM_ID) ?: ""
+		val artistPosition = savedStateHandle.get<Int>(ARG_ITEM_POSITION) ?: -1
+		if (forceRefresh && artistId.isNotEmpty() && artistPosition != -1) {
 			forceRefresh = false
-			processScreenAction(RefreshPagingData)
+			viewModelScope.launch(dispatcherExecutor.workDispatcher) {
+				processScreenAction(BookmarkActionLoading)
+				val bookmarked = verifyArtistBookmarkedUseCase.verifyArtist(artistId)
+				savedStateHandle[ARG_ITEM_ID] = ""
+				savedStateHandle[ARG_ITEM_POSITION] = -1
+				processScreenAction(BookmarkActionFinished(artistPosition, bookmarked))
+			}
 		}
 	}
 
@@ -118,13 +129,14 @@ class BrowseViewModel @AssistedInject constructor(
 }
 
 const val ARG_SEARCHED_QUERY = "ARG_SEARCHED_QUERY"
+const val ARG_ITEM_POSITION = "ARG_ITEM_POSITION"
+const val ARG_ITEM_ID = "ARG_ITEM_ID"
 
 sealed class BrowseScreenState : ScreenState {
 	class ArtistsListDataLoaded(val pagingData: PagingData<IArtistListInfo>) : BrowseScreenState()
 }
 
 sealed class BrowseScreenAction : ScreenAction {
-	object RefreshPagingData : BrowseScreenAction()
 	class NavigateToDetail(val artistId: String) : BrowseScreenAction()
 	object BookmarkActionLoading : BrowseScreenAction()
 	object BookmarkActionFailed : BrowseScreenAction()

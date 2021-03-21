@@ -49,8 +49,8 @@ class BrowseScreen :
 
 	private fun initAdapter() {
 		adapterPaging = PagingArtistItemsAdapter(
-			{ artistId ->
-				viewModel.onArtistClicked(artistId)
+			{ position, artistId ->
+				viewModel.onArtistClicked(position, artistId)
 			},
 			{ position, id, bookmarked ->
 				viewModel.onArtistBookmarkClicked(position, id, bookmarked)
@@ -107,9 +107,6 @@ class BrowseScreen :
 			is BrowseScreenAction.BookmarkActionFinished -> {
 				binding.browseProgressView.progressView.isVisible = false
 				adapterPaging.onItemChanged(screenAction.position, screenAction.bookmarked)
-			}
-			BrowseScreenAction.RefreshPagingData -> {
-				adapterPaging.refresh()
 			}
 			BrowseScreenAction.BookmarkActionFailed -> {
 				PopupHandler.showMessage(requireContext())

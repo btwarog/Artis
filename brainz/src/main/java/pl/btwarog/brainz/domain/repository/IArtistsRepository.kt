@@ -20,5 +20,6 @@ interface IArtistsRepository {
 
 	suspend fun bookmarkArtist(artistId: String, artistDetailInfo: ArtistDetailInfo?): Long
 	suspend fun unbookmarkArtist(artistId: String): Int
+	suspend fun isArtistBookmarked(artistId: String): Boolean
 	fun getAllBookmarkedArtist(): Flow<List<ArtistDetailInfo>>
 }

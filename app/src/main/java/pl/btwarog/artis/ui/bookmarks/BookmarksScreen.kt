@@ -36,7 +36,7 @@ class BookmarksScreen :
 
 	private fun initAdapter() {
 		adapter = BookmarkedArtistItemsAdapter(
-			{ artistId ->
+			{ _, artistId ->
 				viewModel.onArtistClicked(artistId)
 			},
 			{ _, id, _ ->

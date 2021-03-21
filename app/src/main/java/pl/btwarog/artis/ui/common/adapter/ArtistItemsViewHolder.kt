@@ -18,7 +18,7 @@ class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 	fun bind(
 		position: Int,
 		artistInfo: IArtistListInfo,
-		onItemClickedListener: (String) -> Unit,
+		onItemClickedListener: (Int, String) -> Unit,
 		onBookmarkClickedListener: (Int, String, Boolean) -> Unit
 	) {
 		with(binding) {
@@ -41,7 +41,7 @@ class ArtistItemsViewHolder(private val binding: ItemArtistBinding) :
 			artistCardImage.loadUrlImage(artistInfo.getArtistImageUrl())
 		}
 		binding.root.setOnClickListener {
-			onItemClickedListener(artistInfo.id)
+			onItemClickedListener(position, artistInfo.id)
 		}
 	}
 

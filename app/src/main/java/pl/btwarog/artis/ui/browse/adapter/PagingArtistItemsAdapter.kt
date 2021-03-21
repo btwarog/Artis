@@ -7,7 +7,7 @@ import pl.btwarog.artis.ui.common.adapter.ArtistItemsViewHolder.Companion.ITEM_C
 import pl.btwarog.brainz.domain.model.IArtistListInfo
 
 class PagingArtistItemsAdapter(
-	private val onItemClickedListener: (String) -> Unit,
+	private val onItemClickedListener: (Int, String) -> Unit,
 	private val onBookmarkClickedListener: (Int, String, Boolean) -> Unit
 ) : PagingDataAdapter<IArtistListInfo, ArtistItemsViewHolder>(ITEM_COMPARATOR) {
 

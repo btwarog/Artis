@@ -66,6 +66,10 @@ class ArtistsRepository(private val iArtistsRemote: IArtistsRemote, private val 
 		return iArtistsCache.deleteBookmarkedArtist(artistId)
 	}
 
+	override suspend fun isArtistBookmarked(artistId: String): Boolean {
+		return iArtistsCache.getBookmarkedArtist(artistId) != null
+	}
+
 	override fun getAllBookmarkedArtist(): Flow<List<ArtistDetailInfo>> {
 		return iArtistsCache.getAllBookmarkedArtists()
 	}
