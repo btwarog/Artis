@@ -28,8 +28,8 @@ class PagingArtistItemsAdapter(
 	fun onItemChanged(position: Int, bookmarked: Boolean) {
 		getItem(position)?.let {
 			it.bookmarked = bookmarked
+			notifyItemChanged(position)
 		}
-		notifyItemChanged(position)
 	}
 
 	companion object {
