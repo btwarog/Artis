@@ -8,8 +8,18 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.paging.LoadState.Error
+import androidx.paging.LoadState.Loading
+import androidx.paging.LoadState.NotLoading
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pl.btwarog.artis.R
+import pl.btwarog.artis.R.string
 import pl.btwarog.artis.appComponent
 import pl.btwarog.artis.databinding.ScreenBrowseBinding
 import pl.btwarog.artis.ui.ContentActivity
@@ -20,11 +30,16 @@ import pl.btwarog.artis.ui.detail.ARG_DETAIL_ARTIST_ID
 import pl.btwarog.artis.ui.utils.PopupHandler
 import pl.btwarog.artis.ui.utils.QueryTextListener
 import pl.btwarog.brainz.domain.error.NetworkException
+import pl.btwarog.core.domain.executors.IDispatcherExecutor
 import pl.btwarog.core_ui.presentation.ui.BaseViewModelFragment
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class BrowseScreen :
 	BaseViewModelFragment<ScreenBrowseBinding, BrowseScreenState, BrowseScreenAction, BrowseViewModel>(R.layout.screen_browse) {
+
+	@Inject
+	lateinit var iDispatcherExecutor: IDispatcherExecutor
 
 	private lateinit var adapterPaging: PagingArtistItemsAdapter
 
@@ -47,6 +62,7 @@ class BrowseScreen :
 		initAdapter()
 	}
 
+	@OptIn(InternalCoroutinesApi::class)
 	private fun initAdapter() {
 		adapterPaging = PagingArtistItemsAdapter(
 			{ position, artistId ->
@@ -60,20 +76,38 @@ class BrowseScreen :
 			ArtistItemsLoadStateAdapter { adapterPaging.retry() }
 		)
 		binding.browseList.itemAnimator = null
+		observeStateDueToSearchChanges()
+		addOverallLoadStateListener()
+	}
+
+	private fun observeStateDueToSearchChanges() {
+		lifecycleScope.launch(iDispatcherExecutor.workDispatcher) {
+			adapterPaging.loadStateFlow
+				.distinctUntilChangedBy { state -> state.refresh }
+				.filter { it.refresh is LoadState.NotLoading }
+				.collect {
+					withContext(iDispatcherExecutor.resultDispatcher) {
+						binding.browseList.smoothScrollToPosition(0)
+					}
+				}
+		}
+	}
+
+	private fun addOverallLoadStateListener() {
 		adapterPaging.addLoadStateListener { loadState ->
 			when (val state = loadState.source.refresh) {
-				is LoadState.NotLoading -> {
+				is NotLoading -> {
 					binding.browseViewFlipper.displayedChild = CONTENT
 					binding.browseProgressView.progressView.isVisible = false
 				}
-				is LoadState.Loading -> {
+				is Loading -> {
 					binding.browseViewFlipper.displayedChild = CONTENT
 					binding.browseProgressView.progressView.isVisible = true
 				}
-				is LoadState.Error -> {
+				is Error -> {
 					binding.browseProgressView.progressView.isVisible = false
 					binding.browseErrorView.errorMessage.text =
-						getString(if (state.error is NetworkException) R.string.common_network_issue else R.string.common_general_issue)
+						getString(if (state.error is NetworkException) string.common_network_issue else string.common_general_issue)
 					binding.browseViewFlipper.displayedChild = ERROR
 				}
 			}
