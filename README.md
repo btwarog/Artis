@@ -31,7 +31,8 @@ Android Studio `4.1.3`
 * [OkHttp](https://square.github.io/okhttp/) - client for Apollo   
 * [Glide](https://bumptech.github.io/glide/) - Image loading library. Selected cache strategy [ALL](https://bumptech.github.io/glide/javadocs/400/com/bumptech/glide/load/engine/DiskCacheStrategy.html#ALL).  
 * [MockK](https://mockk.io/ANDROID.html) - for Unit Testing  
-* [Trubine](https://github.com/cashapp/turbine) - for Flow testing
+* [Turbine](https://github.com/cashapp/turbine) - for Flow testing
+* [Dagger 2](https://dagger.dev) - for DI
 
 
 
