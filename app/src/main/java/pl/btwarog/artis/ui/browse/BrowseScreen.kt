@@ -76,21 +76,7 @@ class BrowseScreen :
 			ArtistItemsLoadStateAdapter { adapterPaging.retry() }
 		)
 		binding.browseList.itemAnimator = null
-		observeStateDueToSearchChanges()
 		addOverallLoadStateListener()
-	}
-
-	private fun observeStateDueToSearchChanges() {
-		lifecycleScope.launch(iDispatcherExecutor.workDispatcher) {
-			adapterPaging.loadStateFlow
-				.distinctUntilChangedBy { state -> state.refresh }
-				.filter { it.refresh is LoadState.NotLoading }
-				.collect {
-					withContext(iDispatcherExecutor.resultDispatcher) {
-						binding.browseList.smoothScrollToPosition(0)
-					}
-				}
-		}
 	}
 
 	private fun addOverallLoadStateListener() {
